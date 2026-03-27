@@ -396,6 +396,126 @@
             text-transform: uppercase;
         }
 
+        /* ALLEGATION TABS */
+        .tabs-container { margin-top: 16px; }
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0;
+        }
+        .tab-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            background: #f5f3ee;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
+            position: relative;
+            bottom: -2px;
+        }
+        .tab-btn:hover { background: #eae7df; color: var(--navy); }
+        .tab-btn.active {
+            background: var(--card-bg);
+            color: var(--navy);
+            border-color: var(--border);
+            border-bottom: 2px solid var(--card-bg);
+            font-weight: 700;
+        }
+        .tab-btn .tab-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .tab-btn.active .tab-num { background: var(--gold); }
+        .tab-content { display: none; padding: 20px 0 0 0; }
+        .tab-content.active { display: block; }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .severity-high { background: #fde8e8; color: var(--red); }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-low { background: #e8f5e9; color: var(--green); }
+
+        .defence-strong { border-left: 4px solid var(--green); }
+        .defence-moderate { border-left: 4px solid #e65100; }
+        .defence-weak { border-left: 4px solid var(--red); }
+
+        .counter-point {
+            background: #f0f7ee;
+            border-left: 4px solid var(--green);
+            padding: 12px 16px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .counter-point strong { color: var(--green); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .stat-num {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .stat-card .stat-label {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-nav { gap: 3px; }
+            .tab-btn { padding: 8px 10px; font-size: 11px; }
+            .tab-btn .tab-num { width: 18px; height: 18px; font-size: 9px; margin-right: 4px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-card .stat-num { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .tabs-nav { gap: 2px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+            .tab-btn { padding: 7px 8px; font-size: 10px; flex-shrink: 0; white-space: nowrap; }
+            .tab-btn .tab-num { width: 16px; height: 16px; font-size: 8px; margin-right: 3px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stat-card { padding: 12px; }
+            .stat-card .stat-num { font-size: 20px; }
+            .stat-card .stat-label { font-size: 10px; }
+            .counter-point { padding: 10px 12px; font-size: 13px; }
+        }
+
         /* DOWNLOAD BUTTON */
         .download-btn {
             position: fixed;
@@ -633,6 +753,7 @@
         <a href="#allegation">Allegation</a>
         <a href="#evidence">Evidence Source</a>
         <a href="#defence">Defence Points</a>
+        <a href="#allegations">Allegations</a>
         <a href="#timeline">Timeline</a>
         <a href="#legal">Legal Principles</a>
         <a href="#summary">Summary</a>
@@ -1006,7 +1127,521 @@
         </div>
     </div>
 
-    <!-- 6. NEGOTIATION TIMELINE -->
+    <!-- ALLEGATIONS & DEFENCE -->
+    <div class="section" id="allegations">
+        <div class="section-number">Section 6</div>
+        <h2>All Client Allegations & Our Defence</h2>
+        <p style="margin-bottom: 16px;">The client has raised 15 allegations over the course of the project. Below is each allegation with the client's exact words, our defence with chat evidence, and a risk assessment.</p>
+
+        <div class="tabs-container">
+            <div class="tabs-nav" id="tabsNav">
+                <button class="tab-btn active" onclick="switchTab(1)"><span class="tab-num">1</span>Forced Contract</button>
+                <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">2</span>Poor Communication</button>
+                <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">3</span>Delayed Drawings</button>
+                <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">4</span>No Schedule</button>
+                <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">5</span>No Reports</button>
+                <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">6</span>Quality Issues</button>
+                <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">7</span>Extra Charges</button>
+                <button class="tab-btn" onclick="switchTab(8)"><span class="tab-num">8</span>Unsigned Contract</button>
+                <button class="tab-btn" onclick="switchTab(9)"><span class="tab-num">9</span>No Protection</button>
+                <button class="tab-btn" onclick="switchTab(10)"><span class="tab-num">10</span>Work Stoppages</button>
+                <button class="tab-btn" onclick="switchTab(11)"><span class="tab-num">11</span>Neighbour Mud</button>
+                <button class="tab-btn" onclick="switchTab(12)"><span class="tab-num">12</span>Pump Unsecured</button>
+                <button class="tab-btn" onclick="switchTab(13)"><span class="tab-num">13</span>False Delay Blame</button>
+                <button class="tab-btn" onclick="switchTab(14)"><span class="tab-num">14</span>Height Dispute</button>
+                <button class="tab-btn" onclick="switchTab(15)"><span class="tab-num">15</span>MCA/RoC Threat</button>
+            </div>
+
+            <!-- TAB 1: FORCED CONTRACT -->
+            <div class="tab-content active" id="tab1">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: Forced to Sign the Contract</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Claim:</h4>
+                    <div class="allegation" style="margin:8px 0 16px 0;">
+                        The client alleges he was coerced/forced into signing the construction agreement.
+                    </div>
+
+                    <h4 style="color:var(--green);">Our Defence (11 Points):</h4>
+                    <p>Full defence is covered in <a href="#defence" style="color:var(--gold); font-weight:700;">Section 5 above</a>. Key highlights:</p>
+                    <div class="counter-point"><strong>1.</strong> Client requested the draft agreement himself - twice on 17 Mar 2025</div>
+                    <div class="counter-point"><strong>2.</strong> Took 7 days to review, returned with annotated counter-proposal</div>
+                    <div class="counter-point"><strong>3.</strong> Client pressured contractor to finalize: <em>"I would like to finalise the deal and move forward latest by tomorrow"</em></div>
+                    <div class="counter-point"><strong>4.</strong> Client uploaded the final contract himself on 22 May 2025</div>
+                    <div class="counter-point"><strong>5.</strong> Invoked contract terms for his own benefit 5+ times after signing</div>
+                    <div class="counter-point"><strong>6.</strong> Paid Rs. 34.5L voluntarily over 8+ months - ratification by conduct</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Very low risk. The chat evidence overwhelmingly disproves this allegation. The doctrine of approbation and reprobation applies.</div>
+                </div>
+            </div>
+
+            <!-- TAB 2: POOR COMMUNICATION -->
+            <div class="tab-content" id="tab2">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: Poor Communication / No Response for Weeks</h3>
+                    <span class="severity-badge severity-medium">Medium Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025, 11:46 PM (Line 643)</div>
+                        <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                        <div class="msg">"If I ask a doubt or question there would be no answer for weeks. Very less calls from me were attended."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-num">244</div>
+                            <div class="stat-label">Messages from our team</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">83</div>
+                            <div class="stat-label">Attachments shared</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">25+</div>
+                            <div class="stat-label">Thank you's from client</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">10/10</div>
+                            <div class="stat-label">Months with active chat</div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:16px;">Team Communication Breakdown:</h4>
+                    <table>
+                        <thead><tr><th>Team Member</th><th>Messages</th><th>Role</th></tr></thead>
+                        <tbody>
+                            <tr><td>Krithika</td><td><strong>89</strong></td><td>Project Coordinator</td></tr>
+                            <tr><td>Ar Gladwin ARUPJ</td><td><strong>80</strong></td><td>Architect</td></tr>
+                            <tr><td>Harish</td><td><strong>54</strong></td><td>Engineer</td></tr>
+                            <tr><td>Ajay</td><td><strong>13</strong></td><td>Site Supervisor</td></tr>
+                            <tr><td>Speckle Business</td><td><strong>3</strong></td><td>Company Account</td></tr>
+                            <tr><td><strong>Total Team</strong></td><td><strong>244</strong></td><td></td></tr>
+                            <tr style="background:#fef9ed;"><td><strong>Client</strong></td><td><strong>303</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top:16px;">Client Thanked Us 25+ Times - Selected Proof:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">10 July 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thank you for the update Gladwin"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">17 July 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thank you for the video and drawings."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">21 July 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Good morning Krithika, thank you for your reply."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">29 August 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thank you so much Ajay for the updates."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">13 October 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thank you Krithika for the detailed updates. Much appreciated."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">8 November 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thanks a lot for trying. Keep me posted."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">14 November 2025</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Thanks for sharing the picture of the wood. Very helpful."</div>
+                    </div>
+
+                    <h4 style="margin-top:16px;">Proactive Updates from Our Team:</h4>
+                    <div class="counter-point"><strong>30 Apr:</strong> Krithika - <em>"Hi excavation work has started"</em> + video</div>
+                    <div class="counter-point"><strong>23 Jul:</strong> Gladwin - <em>"Concrete pouring for the footing going on today"</em> + 6 photos + 3 videos</div>
+                    <div class="counter-point"><strong>18 Aug:</strong> Harish - <em>"Consolidation work today"</em> + video</div>
+                    <div class="counter-point"><strong>26 Aug:</strong> Ajay - <em>"The roller work is going on now"</em> + video</div>
+                    <div class="counter-point"><strong>29 Aug:</strong> Ajay - <em>"The compaction work is done and the masonry work has started"</em></div>
+                    <div class="counter-point"><strong>13 Oct:</strong> Krithika - Detailed multi-point update on waterproofing, bar bending, termite, workers</div>
+                    <div class="counter-point"><strong>3 Nov:</strong> Gladwin - <strong>20+ videos and photos</strong> covering consolidation, rammering, termite piping, PCC</div>
+
+                    <h4 style="margin-top:16px;">Client Thanked Harish During the Same Dispute:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025, 11:46 PM (Line 636)</div>
+                        <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                        <div class="msg">"Absolutely Harish, thanks for pitching in."</div>
+                    </div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Low risk. 244 messages, 83 attachments, and 25+ thank-you messages from the client completely contradict "no answer for weeks." The client is conflating "not getting the answer he wanted" with "no communication."</div>
+                </div>
+            </div>
+
+            <!-- TAB 3: DELAYED DRAWINGS -->
+            <div class="tab-content" id="tab3">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: Structural Drawings Not Shared on Time</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">17 July 2025 (Line 210)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Can you please send me the column and footing schedule? I have been requesting this for more than two months, but I have yet to receive it."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 639)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"There's a drawing that should have been given along with the contract itself. I had to follow up several times for the same."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <p>Drawings were shared - though some were delayed due to dependency on structural engineer:</p>
+                    <div class="counter-point"><strong>29 Apr:</strong> Krithika shared footing and marking layout PDFs (Lines 145-149)</div>
+                    <div class="counter-point"><strong>17 Jul:</strong> Harish shared column details, sump/septic drawings, and site video on the same day client asked (Lines 207-217)</div>
+                    <div class="counter-point"><strong>19 Aug:</strong> Gladwin shared plinth beam drawing (Line 382)</div>
+                    <div class="counter-point"><strong>14 Nov:</strong> Krithika: <em>"Will share as soon as we receive it from the structural engineer"</em> (Line 659) - dependency on third party</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. The column/footing schedule was indeed delayed. However, drawings were eventually shared, and some delays were due to the structural engineer (third party). The contractor should document the structural engineer's timelines as evidence.</div>
+                </div>
+            </div>
+
+            <!-- TAB 4: NO SCHEDULE -->
+            <div class="tab-content" id="tab4">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: No Work Schedule / Project Timeline Provided</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 638)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"There should have been a work schedule added along with the contract. Where is that?"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">1 October 2025 (Line 463)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Please provide the schedule of activities you are planning to perform. This was to be given along with the contract itself. I am yet to receive it."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>17 Oct:</strong> Krithika provided a timeline estimate: <em>"The work should be done in 4 months."</em> (Line 507)</div>
+                    <div class="counter-point"><strong>31 Dec:</strong> Gladwin shared formal timeline document: <em>CONSTRUCTION_Ledger.pdf</em> and <em>Sheets Document.pdf</em> (Lines 770-776)</div>
+                    <div class="counter-point"><strong>13 Oct:</strong> Krithika provided detailed stage-by-stage plan with activities before wall construction (Lines 489-497)</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. While a formal schedule was shared later (Dec 2025), the client's point that it should have accompanied the contract has merit. The contractor should argue that construction schedules are iterative and depend on approvals, weather, and client decisions that delayed the process.</div>
+                </div>
+            </div>
+
+            <!-- TAB 5: NO REPORTS -->
+            <div class="tab-content" id="tab5">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: No Weekly Progress Reports</h3>
+                    <span class="severity-badge severity-medium">Medium Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 640)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"I have asked for weekly reporting at the time of contract, which was also promised. Could you please let me know how many weekly progress reports were sent across to me?"</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <p>While formal weekly reports were not sent as standalone documents, the WhatsApp group functioned as a <strong>continuous progress channel</strong>:</p>
+                    <div class="counter-point"><strong>83 attachments</strong> shared by the team (videos, photos, PDFs) serving as real-time progress documentation</div>
+                    <div class="counter-point"><strong>Regular site videos</strong> shared by Gladwin, Ajay, and Harish showing excavation, consolidation, footing, compaction, rammering, termite treatment, PCC, and masonry work</div>
+                    <div class="counter-point"><strong>3 Nov:</strong> Gladwin shared 20+ videos/photos in a single day covering weeks of work progress</div>
+                    <div class="counter-point"><strong>Active communication every month</strong> - 10 out of 10 months had team messages</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. Formal weekly reports were promised but not delivered as structured documents. However, the WhatsApp group served as a de facto reporting channel with frequent multimedia updates. The contractor should argue that the medium changed but the intent was fulfilled.</div>
+                </div>
+            </div>
+
+            <!-- TAB 6: QUALITY ISSUES -->
+            <div class="tab-content" id="tab6">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: Construction Non-Conformities / Quality Issues</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">9 September 2025 (Line 439)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"It appears like many columns are offset from the intended line. I am a bit surprised with this. What's the reason for all these?"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">14 September 2025 (Line 449)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"This plinth beam (the one between bathrooms and north east corner BR) is very cross. One end it is 9'8" and other end it is 10'3". This must be corrected before pouring concrete."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">15 November 2025 (Line 695)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Please take care of the concrete cracking"</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Responsive action:</strong> Team acknowledged and corrected issues. Harish provided a solution for the plinth beam stair issue: <em>"We'll cut this part by 10 inches and additional lockfix rod will be placed for support."</em> (Line 703)</div>
+                    <div class="counter-point"><strong>Structural integrity maintained:</strong> Krithika: <em>"the structure is done as per the drawings shared by structural engineer considering the safety factor"</em> (Line 244)</div>
+                    <div class="counter-point"><strong>Third-party test reports shared:</strong> Solid blocks third party test report, 8-inch and 4-inch block test reports were shared proactively (Lines 572-577)</div>
+                    <div class="counter-point"><strong>Client agreed to corrections:</strong> Client said <em>"Proceed with the construction work"</em> (Line 705) after reviewing the solution</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. Some quality issues were genuine (column offset, plinth beam deviation). However, issues were addressed when raised, and the client approved the corrective measures. The contractor should document all corrective actions taken.</div>
+                </div>
+            </div>
+
+            <!-- TAB 7: EXTRA CHARGES -->
+            <div class="tab-content" id="tab7">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: Unauthorized Additional Charges</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 641)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Where and how the additional charges are appearing all of a sudden without my prior approval? I don't remember discussing or agreeing to increase the size of the main sump."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 619)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"your team just randomly comes up with additional payment requests all of a sudden which is taking a toll on the trust."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>APCO blocks:</strong> Client himself chose the premium option: <em>"I would prefer to go only with Apco due to superior compressive strength"</em> (Line 591). Additional cost of Rs. 64,350 was clearly communicated before ordering (Line 596).</div>
+                    <div class="counter-point"><strong>Contract clause:</strong> Harish stated: <em>"Any thing apart from the contract is considered as additional work"</em> (Line 635) and <em>"The cost in the contract is calculated based on what is specified in the same. Any additional work will be carried out with additional cost."</em> (Line 687)</div>
+                    <div class="counter-point"><strong>Septic tank:</strong> Harish explained the change: <em>"it is converted to septic and soakpit for that capacity"</em> (Line 663). Client was asked for decision (Line 668).</div>
+                    <div class="counter-point"><strong>MOM agreed:</strong> Client's own MOM on 1 Dec states: <em>"Calculation and basis for additional works carried out by contractor will be shared/clarified by contractor. The mutually agreed charges to be cleared later by owner."</em> (Line 730)</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. Some additional charges were client-driven (APCO blocks), some were scope changes (septic tank). The contractor should prepare a detailed breakdown of each additional charge with justification and the client's approval (verbal or written).</div>
+                </div>
+            </div>
+
+            <!-- TAB 8: UNSIGNED CONTRACT -->
+            <div class="tab-content" id="tab8">
+                <div class="card defence-weak">
+                    <h3 style="margin-top:0;">Allegation: Signed Contract Copy Not Returned</h3>
+                    <span class="severity-badge severity-medium">Medium Severity</span>
+                    <span class="severity-badge severity-high" style="margin-left:8px;">Weak Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 645)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Even today your team has not given the signed contract. You still have to sign that. For how many more days should I follow to get it?"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">22 November 2025 (Line 713)</div>
+                        <div class="sender">Vasanthan M (Father):</div>
+                        <div class="msg">"Plse arrange to give us the original agreement duly signed with sketches & 2d and programme schedule."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Krithika stated:</strong> <em>"The original copy of the agreement has to be with us, and the soft copy with my signature is already available in the group."</em> (Line 716)</div>
+                    <div class="counter-point"><strong>Digital copy shared:</strong> The signed soft copy was available in the WhatsApp group for both parties' reference.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> High risk. The physical signed copy should have been provided to the client. This is an administrative lapse that should be rectified immediately. The contractor should provide the signed copy to neutralise this point.</div>
+                </div>
+            </div>
+
+            <!-- TAB 9: NO PROTECTION -->
+            <div class="tab-content" id="tab9">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: No Payment Protection for Client</h3>
+                    <span class="severity-badge severity-medium">Medium Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 623)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"If there's a situation where you abandon the work and vanish, how do we quantify the work you have completed vs the money you have taken from me?"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">11 November 2025 (Line 647)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"There's absolutely no problem in paying the stage wise money. But there's no protection for me."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Contract exists:</strong> The contract itself is the protection - both parties are bound by its terms.</div>
+                    <div class="counter-point"><strong>Stage-wise payment:</strong> The payment structure is milestone-based, ensuring work precedes full payment.</div>
+                    <div class="counter-point"><strong>Continuous work:</strong> Work was never abandoned. All construction stages proceeded despite disagreements.</div>
+                    <div class="counter-point"><strong>Client acknowledged:</strong> <em>"There's absolutely no problem in paying the stage wise money"</em> - client himself validated the payment structure.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. The client raises a valid concern about quantification of work vs payment. The contractor should maintain clear documentation of work completed at each stage. The construction ledger shared on 31 Dec (Line 770) addresses this.</div>
+                </div>
+            </div>
+
+            <!-- TAB 10: WORK STOPPAGES -->
+            <div class="tab-content" id="tab10">
+                <div class="card defence-moderate">
+                    <h3 style="margin-top:0;">Allegation: Frequent Work Stoppages / Labour Issues</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-medium" style="margin-left:8px;">Moderate Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">16 August 2025 (Line 359)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"it appears like no one has visited the site from the time I have last visited on 8th Aug 2025"</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">12 July 2025 (Line 190)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"May I know why there's no work happening in our site?"</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Festival holidays:</strong> Krithika: <em>"Due to festivals there is be labour shortage from pooja the workers dint come to site yesterday... the workers will again taking leave during Diwali (it is considered in the timeline)"</em> (Line 497)</div>
+                    <div class="counter-point"><strong>Weather:</strong> Ajay: <em>"The soil seems to be wet. And the workers were on leave for 3 days."</em> (Lines 361-362) - wet conditions prevent certain construction work.</div>
+                    <div class="counter-point"><strong>Industry-wide issue:</strong> Labour shortages during festival seasons (Pooja, Diwali) are standard across the Indian construction industry.</div>
+                    <div class="counter-point"><strong>Grace period:</strong> The contract includes an 8-month construction period with grace provisions for unforeseen circumstances.</div>
+                    <div class="counter-point"><strong>Work resumed each time:</strong> After every stoppage, work was restarted and updates were shared.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Moderate risk. Multiple stoppages are documented. However, they were caused by festivals, weather, and labour market conditions - not contractor negligence. The contractor should show these delays were factored into the timeline.</div>
+                </div>
+            </div>
+
+            <!-- TAB 11: NEIGHBOUR MUD -->
+            <div class="tab-content" id="tab11">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: Mud Spilled into Neighbouring Site</h3>
+                    <span class="severity-badge severity-low">Low Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">6 August 2025 (Line 318)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Neighbouring site owner says that the mud from our site is below their plinth beam rods. They are not able to go for centring and plinth beam casting."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Immediate response:</strong> Speckle Business: <em>"the team is on the way to site. They ll clear it"</em> (Line 322) - responded within 10 minutes.</div>
+                    <div class="counter-point"><strong>Client handled it himself:</strong> <em>"Neighbouring site owner has asked their contractors/labourers to clear up the mud. I will take care of the compensation whatever they might ask."</em> (Line 327) - client took responsibility for the cost.</div>
+                    <div class="counter-point"><strong>Operational incident:</strong> This is a routine construction site incident, not a contractual breach.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Very low risk. The issue was addressed immediately and the client himself managed the resolution. This is an operational matter, not a legal one.</div>
+                </div>
+            </div>
+
+            <!-- TAB 12: PUMP UNSECURED -->
+            <div class="tab-content" id="tab12">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: Pump Controller Left Unsecured</h3>
+                    <span class="severity-badge severity-low">Low Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">14 September 2025 (Line 451)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"I have told multiple times to keep this controller and cable inside the temporary shed. Nobody is careful about it. Today only some random people making bar bending are working at site."</div>
+                    </div>
+                    <div class="chat-evidence">
+                        <div class="meta">14 September 2025 (Line 452)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"If I see once again it is left unattended in the rain without any security, unfortunately I will be forced to take it with me."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Client's own equipment:</strong> The borewell pump was installed by the client at his own expense (Line 316). It is the client's property.</div>
+                    <div class="counter-point"><strong>Operational matter:</strong> Securing client-owned equipment at a shared construction site is a site management issue, not a contractual obligation.</div>
+                    <div class="counter-point"><strong>No damage occurred:</strong> No evidence of actual damage or loss to the pump controller.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Very low risk. This is a minor site management issue regarding client-owned equipment. No contractual obligation was breached.</div>
+                </div>
+            </div>
+
+            <!-- TAB 13: FALSE DELAY BLAME -->
+            <div class="tab-content" id="tab13">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: False Delay Attribution to Payment</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">31 December 2025 (Line 782)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"I have agreed to make this payment on 1st Dec itself, i.e. within 24 hours of you informing us about stopping the work. From 4th Dec you were saying workers were not available. I am not sure to understand why did you mention 30 days against delay due to payment. Please substantiate what you are stating here."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Stage 3 payment was due 3 Nov, not 1 Dec:</strong> Krithika: <em>"Payment for stage 03 was not due on december 01 but november 03 hence the delay in payment is mentioned in the schedule."</em> (Line 791)</div>
+                    <div class="counter-point"><strong>Payment request on 3 Nov:</strong> Gladwin requested payment on 3 Nov (Line 566). Client said he would pay on Wednesday (Line 568). Partial payment dispute began 11 Nov.</div>
+                    <div class="counter-point"><strong>Client's own MOM confirms:</strong> <em>"13L as payment for stage 3 has already been paid. As on date, as per the payment schedule owner has to pay 6 more lakhs."</em> (Line 726) - 6L was still pending as of 1 Dec.</div>
+                    <div class="counter-point"><strong>Client asked NOT to pay on 24 Dec:</strong> Krithika: <em>"Request you to not initiate the payment. Lets clear the points first."</em> (Line 767) - contractor wanted clarification before accepting payment.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Low risk. The payment due date was contractually 3 Nov, not 1 Dec as the client claims. The 30-day delay calculation is accurate from the contractual due date. The contractor's position is well-documented.</div>
+                </div>
+            </div>
+
+            <!-- TAB 14: HEIGHT DISPUTE -->
+            <div class="tab-content" id="tab14">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: Building Height Was Always 11 Feet</h3>
+                    <span class="severity-badge severity-medium">Medium Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">14 November 2025 (Line 671)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"No Harish, the original requirement was 11 feet of height. This was a mistake in the quotation, which was corrected in the contract."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>Quotation said 10 ft:</strong> The original quotation specified 10 ft ceiling height.</div>
+                    <div class="counter-point"><strong>Client requested 11 ft:</strong> On 17 Mar, the client asked: <em>"please check if there's a possibility to increase the clear height of the rooms about 11 ft as much as possible. If not, let's keep it at least 10.5 FT"</em> (Line 22). This was a change request.</div>
+                    <div class="counter-point"><strong>Harish noted the change:</strong> <em>"The building height is also changed to 10ft to 11ft from the quotation in the contract."</em> (Line 669) - this is an acknowledged scope change that affects cost.</div>
+                    <div class="counter-point"><strong>Contract reflects 11 ft:</strong> The final contract includes 11 ft, which means both parties agreed to the change. The dispute is whether it was an additional cost item or included in the base price.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Low risk. The chat clearly shows the height was increased from 10 ft to 11 ft at the client's request. The contractor has documentation that this was a client-driven change from the original quotation.</div>
+                </div>
+            </div>
+
+            <!-- TAB 15: MCA/ROC THREAT -->
+            <div class="tab-content" id="tab15">
+                <div class="card defence-strong">
+                    <h3 style="margin-top:0;">Allegation: MCA & RoC Legal Threat</h3>
+                    <span class="severity-badge severity-high">High Severity</span>
+                    <span class="severity-badge severity-low" style="margin-left:8px;">Strong Defence</span>
+
+                    <h4 style="margin-top:16px; color:var(--red);">Client's Exact Words:</h4>
+                    <div class="chat-evidence">
+                        <div class="meta">26 March 2026 (Line 796)</div>
+                        <div class="sender">Client:</div>
+                        <div class="msg">"Dear Ms. Krithika, To give you the benefit of doubt, my mother has sent out a formal notification about the complaint that would be raised with MCA & RoC. The emails have been sent across to the email addresses: Harish@speckle.in; harish@waavie.com; & info@upscape.build. Since she will not be able to take back the complaint with MCA and RoC, she has sent out this notification as a gesture, giving you a reasonable time to react."</div>
+                    </div>
+
+                    <h4 style="color:var(--green); margin-top:20px;">Our Defence:</h4>
+                    <div class="counter-point"><strong>MCA/RoC jurisdiction:</strong> MCA (Ministry of Corporate Affairs) and RoC (Registrar of Companies) deal with corporate governance, not construction contract disputes. This appears to be a misdirected complaint.</div>
+                    <div class="counter-point"><strong>Intimidation tactic:</strong> The threat came after a 3-month silence (last message was 8 Jan 2026). This appears to be a pressure tactic rather than a genuine legal remedy.</div>
+                    <div class="counter-point"><strong>No prior legal notice:</strong> No formal legal notice under Section 80 CPC was served. A WhatsApp message is not a substitute for proper legal procedure.</div>
+                    <div class="counter-point"><strong>Client's mother sent it:</strong> The notification was sent by the client's mother, not the client himself or a legal representative, which weakens its formal standing.</div>
+                    <div class="counter-point"><strong>Notification, not complaint:</strong> The client himself calls it a "notification" and a "gesture" - not a formal complaint. It appears to be a last-resort pressure tactic.</div>
+
+                    <div class="inference"><strong>Risk Assessment:</strong> Low risk in terms of legal merit. MCA/RoC complaints typically relate to company fraud, director misconduct, or non-compliance with Companies Act - not construction contract disputes. The appropriate forum would be a Consumer Forum or Civil Court. The contractor should consult with counsel on a pre-emptive response.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. NEGOTIATION TIMELINE -->
     <div class="section" id="timeline">
         <div class="section-number">Section 6</div>
         <h2>Contract Negotiation Timeline (~2 Months)</h2>
@@ -1350,6 +1985,23 @@ function generatePDF() {
         });
 
     }, 400);
+}
+
+function switchTab(tabNum) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    // Remove active from all buttons
+    document.querySelectorAll('.tab-btn').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    // Show selected tab
+    var tab = document.getElementById('tab' + tabNum);
+    if (tab) tab.classList.add('active');
+    // Activate the clicked button
+    var btns = document.querySelectorAll('.tab-btn');
+    if (btns[tabNum - 1]) btns[tabNum - 1].classList.add('active');
 }
 </script>
 
