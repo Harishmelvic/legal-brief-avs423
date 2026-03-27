@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation #16: Police Complaint Response - Legal Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,.25);
+        }
+        .top-nav a {
+            color: #c9cdd4;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: color .2s;
+        }
+        .top-nav a:hover { color: var(--gold-light); }
+        .top-nav .nav-group { display: flex; gap: 18px; align-items: center; }
+        .top-nav .sep { color: #445; font-size: .85rem; }
+        .nav-disabled {
+            color: #556 !important;
+            pointer-events: none;
+            opacity: .45;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 36px 24px 60px;
+        }
+
+        .allegation-header { margin-bottom: 36px; }
+        .allegation-number {
+            font-family: 'Merriweather', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .allegation-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+        .badge-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        .severity-low { background: #e8f5e9; color: #1a5c2a; }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-high { background: #fde8e8; color: #8b1a1a; }
+        .defence-strong {
+            background: #e8f5e9;
+            color: #1a5c2a;
+            border: 1px solid #1a5c2a;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 28px 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.04);
+        }
+        .card-green { border-left: 4px solid var(--green); }
+        .card h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-radius: 5px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+        }
+        .chat-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px;
+        }
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        .counter-point {
+            border-left: 4px solid var(--green);
+            background: #f0f7ee;
+            border-radius: 4px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .counter-point strong { color: var(--green); }
+
+        .risk-box {
+            border-left: 4px solid var(--gold);
+            background: #fef9ed;
+            border-radius: 4px;
+            padding: 20px 24px;
+        }
+        .risk-box h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 14px;
+        }
+        .detail-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14.5px;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+        .detail-table td:first-child {
+            font-weight: 700;
+            color: var(--navy);
+            width: 160px;
+            white-space: nowrap;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .bottom-nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            background: var(--card-bg);
+        }
+        .bottom-nav a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        @media (max-width: 600px) {
+            .page-wrapper { padding: 20px 14px 40px; }
+            .allegation-title { font-size: 1.35rem; }
+            .card { padding: 18px 16px; }
+            .top-nav { padding: 10px 14px; }
+            .bottom-nav { flex-direction: column; }
+            .bottom-nav a { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="nav-group">
+        <a href="index.html">&larr; Back to All Allegations</a>
+        <span class="sep">|</span>
+        <a href="../legal_brief.html">Main Brief</a>
+    </div>
+    <div class="nav-group">
+        <a href="15.html">&larr; Prev</a>
+        <span class="sep">|</span>
+        <span class="nav-disabled">Next &rarr;</span>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+
+    <header class="allegation-header">
+        <div class="allegation-number">Allegation 16 of 16</div>
+        <h1 class="allegation-title">Police Complaint &mdash; Bellandur PS, Bengaluru</h1>
+        <div class="badge-row">
+            <span class="badge severity-high">Severity: High</span>
+            <span class="badge defence-strong">Defence: Strong</span>
+        </div>
+    </header>
+
+    <!-- DEFENCE STORY -->
+    <div style="background: #f0f7ee; border: 1px solid #c5dcc0; border-left: 4px solid #1a5c2a; border-radius: 6px; padding: 24px 26px; margin-bottom: 28px;">
+        <h2 style="font-family: 'Merriweather', serif; font-size: 1.1rem; color: #1a5c2a; margin-bottom: 12px;">Defence Story</h2>
+        <p style="line-height: 1.85; font-size: 15px; color: #2c2c2c; margin-bottom: 0;">
+            On 27 March 2026, a police notice was received from Bellandur Police Station, Bengaluru (Ref: BVS/Complaint/192/2026), based on a complaint by Smt. Kalyanji M. &mdash; the client's mother, not the contracting party. The complaint alleges the contractor took up construction for Rs. 47,52,000, received Rs. 34,50,000, did not complete work properly, did substandard work, and is demanding additional money. However, the complainant has no locus standi (she is not a party to the contract between Perinbanathan Vasanthan and Speckle Interiors). These are civil/contractual allegations with no criminal element. The construction site is in Hosur, Tamil Nadu &mdash; not Bengaluru, Karnataka &mdash; so Bellandur PS has no territorial jurisdiction. The contract specifies arbitration in Tirunelveli as the exclusive dispute resolution forum. This complaint follows the MCA/RoC threat by exactly one day, confirming a coordinated pattern of forum shopping. Every substantive allegation is already countered by documentary evidence: 3 third-party test reports, 111 visual updates, client-initiated additional works, and the client's own payment default of Rs. 6 lakhs.
+        </p>
+    </div>
+
+    <!-- The Police Notice -->
+    <section class="card card-green">
+        <h2>The Police Notice</h2>
+        <table class="detail-table">
+            <tr>
+                <td>Reference</td>
+                <td>BVS/Complaint/192/2026</td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td>27 March 2026</td>
+            </tr>
+            <tr>
+                <td>Complainant</td>
+                <td>Smt. Kalyanji M. (client's mother)</td>
+            </tr>
+            <tr>
+                <td>Police Station</td>
+                <td>Bellandur Police Station, Bengaluru, Karnataka</td>
+            </tr>
+            <tr>
+                <td>Allegations (verbatim)</td>
+                <td>
+                    <ol style="margin: 0; padding-left: 18px; line-height: 1.85;">
+                        <li>Contractor took up construction for Rs. 47,52,000</li>
+                        <li>Received Rs. 34,50,000 from the client</li>
+                        <li>Did not complete the work properly</li>
+                        <li>Did substandard work</li>
+                        <li>Is demanding additional money</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Defence Counter-Points -->
+    <section class="card card-green">
+        <h2>Defence Counter-Points</h2>
+
+        <!-- 1. No Locus Standi -->
+        <div class="counter-point">
+            <strong>1. No Locus Standi:</strong> The complainant, Smt. Kalyanji M., is the client's mother &mdash; she is not a party to the contract between Perinbanathan Vasanthan and Speckle Interiors. No General Power of Attorney (GPA) or Special Power of Attorney (SPA) has been produced authorising her to act on the client's behalf. This follows the same proxy pattern observed throughout the dispute (see Line 796 &mdash; it was the mother who sent the MCA/RoC threat on behalf of the client). The complainant has no standing to file a complaint regarding a contract she is not a party to.
+        </div>
+
+        <!-- 2. No Criminal Offence -->
+        <div class="counter-point">
+            <strong>2. No Criminal Offence:</strong> The allegations are purely civil/contractual in nature. The ingredients of S.318 BNS (cheating) are not met: there was no dishonest inducement at inception &mdash; the contractor entered into a legitimate contract, performed substantial work, and provided 111 documented updates. The ingredients of S.316 BNS (criminal breach of trust) are not met: the money was received as consideration for construction services, not entrusted for safekeeping. The Supreme Court has held that contractual disputes cannot be converted into criminal cases: <em>Lalita Kumari v. Govt. of UP (2014) 2 SCC 1</em> (FIR mandatory only when cognisable offence is disclosed); <em>Indian Oil Corp v. NEPC India (2006) 6 SCC 736</em> (breach of contract does not give rise to criminal prosecution for cheating). If an FIR is lodged, it is quashable under S.528 BNSS.
+        </div>
+
+        <!-- 3. No Territorial Jurisdiction -->
+        <div class="counter-point">
+            <strong>3. No Territorial Jurisdiction:</strong> The construction site is located in Hosur, Tamil Nadu. The complaint has been filed at Bellandur Police Station, Bengaluru, Karnataka. Under S.179 BNSS, the jurisdiction for investigation lies where the alleged offence took place &mdash; which is Hosur, TN, not Bengaluru, KA. The address provided in the complaint does not establish any cause of action within the territorial limits of Bellandur PS. Bengaluru police have no jurisdiction over a construction project in Tamil Nadu.
+        </div>
+
+        <!-- 4. Contractual Forum Bypassed -->
+        <div class="counter-point">
+            <strong>4. Contractual Forum Bypassed:</strong> Contract Section I specifies arbitration in Tirunelveli, Tamil Nadu as the exclusive dispute resolution mechanism. The client has not served any formal legal notice, has not invoked the arbitration clause, and has not approached the contractually agreed forum. Instead, the client's family has bypassed the contract entirely and approached the police &mdash; a forum with no jurisdiction over construction contract disputes.
+        </div>
+
+        <!-- 5. Pattern of Forum Shopping -->
+        <div class="counter-point">
+            <strong>5. Pattern of Forum Shopping:</strong> The timeline reveals a clear pattern of coordinated forum shopping:
+            <ul style="margin-top: 8px; padding-left: 18px; line-height: 1.85;">
+                <li><strong>November 2025:</strong> WhatsApp threats and accusations</li>
+                <li><strong>Line 648:</strong> Client retraction &mdash; approval of work quality</li>
+                <li><strong>January&ndash;March 2026:</strong> Complete silence (3 months)</li>
+                <li><strong>26 March 2026:</strong> MCA/RoC threat sent by client's mother (<a href="15.html" style="color: var(--green); font-weight: 600;">see Allegation 15</a>)</li>
+                <li><strong>27 March 2026:</strong> Police complaint filed by the same person &mdash; exactly one day later</li>
+            </ul>
+            <p style="margin-top: 10px;">The one-day gap between the MCA/RoC threat and the police complaint confirms these are coordinated actions, not independent grievances. The same individual (Smt. Kalyanji M.) is approaching multiple agencies &mdash; none of which have jurisdiction &mdash; in a systematic attempt to harass and intimidate.</p>
+        </div>
+
+        <!-- 6. Substantive Rebuttals Already on Record -->
+        <div class="counter-point">
+            <strong>6. Substantive Rebuttals Already on Record:</strong>
+            <ul style="margin-top: 8px; padding-left: 18px; line-height: 1.85;">
+                <li><strong>"Substandard work":</strong> Rebutted by 3 independent third-party test reports (Lines 572&ndash;577) confirming IS-standard compliance, 111 photographic/video updates shared in the WhatsApp group, and the client's own written approval of work quality (Line 648). <a href="6.html" style="color: var(--green); font-weight: 600;">See Allegation 6: Substandard Work</a></li>
+                <li><strong>"Additional money":</strong> 5 out of 6 additional works were client-initiated (not contractor-initiated). Contract clause G.4 provides for additional work charges. These were acknowledged in the Minutes of Meeting (MOM) at Line 730. <a href="7.html" style="color: var(--green); font-weight: 600;">See Allegation 7: Unauthorized Additional Charges</a></li>
+                <li><strong>"Work not completed":</strong> The client defaulted on Rs. 6,00,000 (Stage 3 payment) for 58+ days. Under Contract Section G.3, the contractor has authority to stop work upon non-payment. The contractor still acted in good faith (Line 767) by continuing limited work despite the default. <a href="13.html" style="color: var(--green); font-weight: 600;">See Allegation 13: Incomplete Work</a></li>
+                <li><strong>Amounts match contract:</strong> The complaint states Rs. 47,52,000 (contract value) and Rs. 34,50,000 (amount received) &mdash; these are the exact figures from the signed contract. There is no discrepancy, no inflation, and no fraud. The figures themselves confirm a legitimate contractual relationship.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Risk Assessment -->
+    <section class="card card-green">
+        <h2>Risk Assessment</h2>
+        <div class="risk-box">
+            <h3>Low Risk</h3>
+            <p>The complaint has no legal merit on standing, jurisdiction, criminal elements, or substance. The complainant is not a party to the contract. The police station has no territorial jurisdiction. No criminal offence is disclosed. Every substantive allegation is already countered by documentary evidence.</p>
+            <p style="margin-top: 12px;"><strong>Recommended Actions:</strong></p>
+            <ol style="margin-top: 6px; padding-left: 18px; line-height: 1.85;">
+                <li>Engage counsel in Bengaluru immediately</li>
+                <li>Attend Bellandur PS through counsel (not in person)</li>
+                <li>If an FIR is lodged, move to quash under S.528 BNSS citing lack of criminal ingredients and territorial jurisdiction</li>
+                <li>Invoke arbitration under Contract Section I in Tirunelveli as the exclusive dispute resolution forum</li>
+                <li>Document this complaint as part of a coordinated pattern of intimidation (MCA/RoC + Police within 24 hours)</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <a href="15.html">&larr; Previous: MCA &amp; RoC Legal Threat</a>
+        <a href="index.html">All Allegations</a>
+    </div>
+
+</div>
+
+<footer style="background: #0f1a2e; color: #8a8f98; text-align: center; padding: 20px; font-size: 13px; margin-top: 0;">
+    Confidential Legal Document &mdash; Prepared for Speckle Interiors Defence
+</footer>
+
+</body>
+</html>
