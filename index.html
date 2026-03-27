@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Brief - Defence Against Allegation of Coercion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --highlight-bg: #fef9ed;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--navy), var(--dark-navy));
+            color: white;
+            padding: 40px 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .header .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        .header .subtitle {
+            font-size: 15px;
+            color: #b0bec5;
+            margin-bottom: 20px;
+        }
+        .header-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #90a4ae;
+        }
+        .header-meta span { display: flex; align-items: center; gap: 6px; }
+        .header-meta strong { color: #e0e0e0; }
+
+        /* NAV */
+        .nav-bar {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+        .nav-inner a {
+            padding: 14px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-light);
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-inner a:hover, .nav-inner a.active {
+            color: var(--navy);
+            border-bottom-color: var(--gold);
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 60px;
+        }
+        .section-number {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 12px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        .section h2 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 20px;
+            color: var(--navy);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+        .section h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 16px;
+            color: var(--navy);
+            margin: 24px 0 12px 0;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .card-number {
+            background: var(--navy);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .card-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 16px;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+        thead th {
+            background: var(--navy);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        thead th:first-child { border-radius: 4px 0 0 0; }
+        thead th:last-child { border-radius: 0 4px 0 0; }
+        tbody td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        tbody tr:nth-child(even) { background: #fafaf7; }
+        tbody tr:hover { background: var(--highlight-bg); }
+
+        /* CHAT MESSAGES */
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--gold);
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .chat-evidence .meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+        .chat-evidence .sender {
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .chat-evidence .msg {
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* INFERENCE BOX */
+        .inference {
+            background: #eef3ed;
+            border-left: 4px solid var(--green);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .inference strong { color: var(--green); }
+
+        /* ALLEGATION BOX */
+        .allegation {
+            background: #fdf0f0;
+            border-left: 4px solid var(--red);
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+        }
+        .allegation strong { color: var(--red); }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: var(--highlight-bg);
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 16px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+        .timeline-date {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .timeline-event {
+            font-weight: 600;
+            color: var(--navy);
+            margin: 2px 0;
+        }
+        .timeline-who {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .timeline-item.client-initiated { border-left: 3px solid var(--red); }
+        .timeline-item.contractor-initiated { border-left: 3px solid var(--green); }
+        .timeline-item.both { border-left: 3px solid var(--gold); }
+
+        /* LEGAL PRINCIPLES */
+        .legal-principle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+        }
+        .legal-principle h4 {
+            color: var(--navy);
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        .legal-principle p { font-size: 14px; color: var(--text-light); }
+
+        /* DOCUMENT LIST */
+        .doc-list {
+            list-style: none;
+            counter-reset: docs;
+        }
+        .doc-list li {
+            counter-increment: docs;
+            padding: 12px 16px 12px 50px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+        .doc-list li::before {
+            content: counter(docs);
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            background: var(--navy);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .doc-name { font-weight: 700; color: var(--navy); }
+        .doc-file { font-size: 13px; color: var(--text-light); font-family: monospace; }
+
+        /* SUMMARY TABLE */
+        .summary-table thead th { background: var(--green); }
+        .summary-table .verdict {
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: #90a4ae;
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 40px;
+        }
+        .footer strong { color: var(--gold-light); }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-client { background: #fde8e8; color: var(--red); }
+        .badge-contractor { background: #e8f5e9; color: var(--green); }
+        .badge-both { background: #fff3e0; color: #e65100; }
+
+        /* CONFIDENTIAL WATERMARK */
+        .confidential-banner {
+            background: var(--red);
+            color: white;
+            text-align: center;
+            padding: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* DOWNLOAD BUTTON */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--navy), var(--dark-navy));
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(26,39,68,0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: all 0.3s;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(26,39,68,0.55);
+            background: linear-gradient(135deg, #243556, var(--navy));
+        }
+        .download-btn:active { transform: translateY(0); }
+        .download-btn svg { flex-shrink: 0; }
+        .download-btn.generating {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .download-btn .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .download-btn.generating .spinner { display: block; }
+        .download-btn.generating svg { display: none; }
+        .download-btn.generating .btn-text::after { content: 'Generating PDF...'; }
+        .download-btn.generating .btn-text span { display: none; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* PROGRESS BAR */
+        .pdf-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            z-index: 10000;
+            transition: width 0.3s;
+            display: none;
+        }
+        .pdf-progress.active { display: block; }
+
+        /* PRINT */
+        @media print {
+            .nav-bar, .download-btn, .pdf-progress { display: none !important; }
+            .confidential-banner { position: fixed; top: 0; width: 100%; }
+            .section { page-break-inside: avoid; }
+            body { font-size: 12px; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 20px; }
+            .header-meta { flex-direction: column; gap: 6px; }
+            .nav-inner a { padding: 10px 12px; font-size: 12px; }
+            .container { padding: 16px; }
+            .card { padding: 16px; }
+            table { font-size: 13px; }
+            thead th, tbody td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="confidential-banner">Privileged & Confidential - Prepared for Legal Counsel</div>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="header-inner">
+        <div class="label">Legal Brief</div>
+        <h1>Defence Against Allegation of Coercion in Contract Execution</h1>
+        <div class="subtitle">Villa Construction Project - Site No. 423, AVS Sunfields, Hosur</div>
+        <div class="header-meta">
+            <span><strong>Prepared for:</strong> Legal Counsel</span>
+            <span><strong>Prepared by:</strong> Harish (Contractor)</span>
+            <span><strong>Date:</strong> 27 March 2026</span>
+            <span><strong>Ref:</strong> KALYANI / AVS-423</span>
+        </div>
+    </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+    <div class="nav-inner">
+        <a href="#parties">Parties</a>
+        <a href="#project">Project</a>
+        <a href="#allegation">Allegation</a>
+        <a href="#evidence">Evidence Source</a>
+        <a href="#defence">Defence Points</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#legal">Legal Principles</a>
+        <a href="#summary">Summary</a>
+        <a href="#documents">Documents</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 1. PARTIES -->
+    <div class="section" id="parties">
+        <div class="section-number">Section 1</div>
+        <h2>Parties Involved</h2>
+        <table>
+            <thead>
+                <tr><th>Party</th><th>Role</th><th>Entity</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Harish / Krithika</strong></td><td>Contractor / Builder</td><td>Speckle / Upscape Build</td></tr>
+                <tr><td><strong>Perinbanathan Vasanthan</strong></td><td>Client / Property Owner</td><td>Individual</td></tr>
+                <tr><td><strong>Vasanthan Munusamy</strong></td><td>Client's Father</td><td>Individual</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 2. PROJECT -->
+    <div class="section" id="project">
+        <div class="section-number">Section 2</div>
+        <h2>Project Details</h2>
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Details</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Site Location</strong></td><td>Site No. 423, Phase 1, AVS Sunfields Layout, Eluvapalli Village, Hosur, Tamil Nadu</td></tr>
+                <tr><td><strong>Project Type</strong></td><td>Villa Construction (G+3 Structure)</td></tr>
+                <tr><td><strong>Built-up Area</strong></td><td>1,650 sqft</td></tr>
+                <tr><td><strong>Contract Value</strong></td><td>Rs. 47,52,000/-</td></tr>
+                <tr><td><strong>Contract Date</strong></td><td>Finalized on or around 22 May 2025</td></tr>
+                <tr><td><strong>Approval Name</strong></td><td>KALYANI</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 3. ALLEGATION -->
+    <div class="section" id="allegation">
+        <div class="section-number">Section 3</div>
+        <h2>Client's Allegation</h2>
+        <div class="allegation">
+            <strong>Allegation:</strong> The client, Mr. Perinbanathan Vasanthan, has alleged that he was <strong>forced/coerced into signing the construction agreement</strong>. He has further escalated the matter by threatening legal action through MCA (Ministry of Corporate Affairs) and RoC (Registrar of Companies) via a formal notification sent on <strong>26 March 2026</strong> to the email addresses: Harish@speckle.in, harish@waavie.com, and info@upscape.build.
+        </div>
+    </div>
+
+    <!-- 4. EVIDENCE SOURCE -->
+    <div class="section" id="evidence">
+        <div class="section-number">Section 4</div>
+        <h2>Source of Evidence</h2>
+        <div class="highlight-box">
+            The entire contract negotiation is documented in the WhatsApp group <strong>"Mr Peri_Villa Hosur"</strong>, created on <strong>15 March 2025</strong>. The chat export (796 messages) is available as primary evidence. All references below cite <strong>exact, verbatim messages</strong> from this chat with dates and timestamps. The chat export includes text messages, attached documents, images, videos, and audio recordings.
+        </div>
+    </div>
+
+    <!-- 5. DEFENCE POINTS -->
+    <div class="section" id="defence">
+        <div class="section-number">Section 5</div>
+        <h2>Defence Points with Documentary Proof</h2>
+
+        <!-- 5.1 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">1</div>
+                <div class="card-title">The Client Initiated and Requested the Agreement Draft</div>
+            </div>
+            <p>The contractor did not push the agreement on the client. The client <strong>expressly and repeatedly requested</strong> the draft agreement on his own initiative.</p>
+
+            <div class="chat-evidence">
+                <div class="meta">17 March 2025, 8:06 PM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Also please share the draft agreement"</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">17 March 2025, 10:01 PM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Okay, no problem. Please share the agreement draft"</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">18 March 2025, 12:47 PM</div>
+                <div class="sender">Krithika (Contractor):</div>
+                <div class="msg">"Hi sharing the agreement draft, pls have a look and let me know if you need to add or remove anything from the same"</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The contractor's language was invitational (<em>"let me know if you need to add or remove"</em>), not coercive. The client requested the draft twice before it was shared.
+            </div>
+        </div>
+
+        <!-- 5.2 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">2</div>
+                <div class="card-title">The Client Had Sufficient Time to Review (7 Days)</div>
+            </div>
+            <p>Agreement draft shared: <strong>18 March 2025</strong>. Client's annotated response: <strong>25 March 2025</strong>.</p>
+            <p>The client took <strong>7 full days</strong> to review the draft, during which he:</p>
+            <ul style="margin: 8px 0 12px 20px;">
+                <li>Discussed it with his family</li>
+                <li>Prepared a detailed annotated PDF with clause-by-clause comments</li>
+                <li>Proposed his own counter-terms including modified contract value</li>
+            </ul>
+
+            <div class="chat-evidence">
+                <div class="meta">25 March 2025, 1:42 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Mr Perinbanathan Vasanthan Agreement Draft_18032025- with comments.pdf" (file attached)</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">25 March 2025, 1:44 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"This is my proposal. Please check and let me know if this would be suitable for you. I have adjusted the total amount to the actual construction area of 1650 SQFT. The total amount would be about Rs. 47,52,000. Since you are linking the payment and delivery performance with point 7 under Liabilities, I think it would make sense to mention within how many months the specific stage should be completed. Please let me know if you also feel the same."</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client exercised independent judgement, adjusted financial terms, and referenced specific contract clauses (Point 7 - Liabilities). This demonstrates informed consent, not coercion.
+            </div>
+        </div>
+
+        <!-- 5.3 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">3</div>
+                <div class="card-title">The Client Pressured the Contractor to Finalize</div>
+            </div>
+            <p>Far from being forced, the <strong>client himself imposed deadlines</strong> on the contractor to close the deal.</p>
+
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:25 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Any updates on the changes and payment proposal?"</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:43 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"If you need to have some discussion please let me know. I would like to finalise the deal and move forward latest by tomorrow."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:44 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"If you agree for the points please send me your account number. I will send the advance amount as per the payment schedule."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:44 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"If you would like to have some changes let's discuss and try to finalise it by today to start the work from tomorrow."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">16 April 2025, 12:03 PM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"We can't miss 23rd deadline to start the construction please."</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client was the party applying time pressure and setting deadlines. The contractor was not imposing any urgency whatsoever.
+            </div>
+        </div>
+
+        <!-- 5.4 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">4</div>
+                <div class="card-title">The Client Voluntarily Offered to Transfer Advance Payment</div>
+            </div>
+
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:44 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"If you agree for the points please send me your account number. I will send the advance amount as per the payment schedule."</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client offered payment on his own initiative, demonstrating willing participation. No payment was demanded before the client offered it.
+            </div>
+        </div>
+
+        <!-- 5.5 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">5</div>
+                <div class="card-title">The Client Uploaded the Final Contract Himself</div>
+            </div>
+
+            <div class="chat-evidence">
+                <div class="meta">22 May 2025, 8:44 PM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Final Contract AVS 423.pdf" (file attached)</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client personally shared the final executed contract in the WhatsApp group, indicating ownership and acceptance of the document. A person under coercion does not voluntarily distribute the instrument of their alleged coercion.
+            </div>
+        </div>
+
+        <!-- 5.6 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">6</div>
+                <div class="card-title">The Client Consulted Family Members at Every Stage</div>
+            </div>
+
+            <div class="chat-evidence">
+                <div class="meta">2 April 2025, 9:18 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"I would have to bring my parents for the discussion."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">11 April 2025, 2:10 PM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"I have discussed the plan in detail with my parents."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">21 July 2025, 8:26 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"My father is coming to the site today. Just added him to the group."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">30 November 2025, 9:41 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"me and my parents would like to talk to both of you on a conference call"</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client had the full support and involvement of his family in all project decisions, including the contract. This negates any suggestion of isolation or pressure typically associated with coercion.
+            </div>
+        </div>
+
+        <!-- 5.7 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">7</div>
+                <div class="card-title">The Client Repeatedly Relied on the Contract for His Own Benefit</div>
+            </div>
+            <p>After signing, the client <strong>invoked contract terms on multiple occasions</strong> to enforce his rights:</p>
+
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Verbatim Message</th><th>Clause Referenced</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30 Sep 2025</td>
+                        <td><em>"as per the contract waterproofing coating to be applied for foundation areas"</em></td>
+                        <td>Waterproofing scope</td>
+                    </tr>
+                    <tr>
+                        <td>9 Oct 2025</td>
+                        <td><em>"Also, remember there is a penalty clause for late delivery. Ensuring completion before the grace period is your responsibility."</em></td>
+                        <td>Penalty / delivery timeline</td>
+                    </tr>
+                    <tr>
+                        <td>11 Nov 2025</td>
+                        <td><em>"Please amend the contract and I will judiciously follow that. I am happy to move forward from there."</em></td>
+                        <td>General validity</td>
+                    </tr>
+                    <tr>
+                        <td>14 Nov 2025</td>
+                        <td><em>"Wood needs to be A Grade for the complete house as per the quotation and contract."</em></td>
+                        <td>Material specifications</td>
+                    </tr>
+                    <tr>
+                        <td>30 Nov 2025</td>
+                        <td><em>"please read the contract once and be ready with the total amount received, works/activities included in stage 3 and stage 4"</em></td>
+                        <td>Payment milestones</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client treated the contract as a valid, binding document and relied upon it to protect his interests. It is legally impermissible to claim coercion while simultaneously enforcing the same contract's provisions. This constitutes <strong>approbation and reprobation</strong>.
+            </div>
+        </div>
+
+        <!-- 5.8 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">8</div>
+                <div class="card-title">The Client's Father Also Treated the Contract as Valid</div>
+            </div>
+
+            <div class="chat-evidence">
+                <div class="meta">22 November 2025, 12:33 PM</div>
+                <div class="sender">Vasanthan Munusamy (Client's Father):</div>
+                <div class="msg">"Hi mam, As discussed over phone on 18th, have you find time today or tomorrow for discussion/reconciliation along with my wife. Plse arrange to give us the original agreement duly signed with sketches & 2d and programme schedule. Thanks. Vasanthan.M"</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client's father requested a signed copy of the agreement for his records and sought "reconciliation" - not repudiation. This confirms the entire family's acceptance of the contract's validity.
+            </div>
+        </div>
+
+        <!-- 5.9 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">9</div>
+                <div class="card-title">The Client Is an Educated Professional Capable of Informed Consent</div>
+            </div>
+            <p>Evidence from the chat establishes the client as:</p>
+            <ul style="margin: 10px 0 10px 20px; line-height: 2;">
+                <li>An employee of <strong>HAL (Hindustan Aeronautics Limited)</strong> / a defence factory</li>
+                <li>Possessing technical knowledge of structural engineering, IS standards, and reinforcement specifications</li>
+                <li>Independently navigating the <strong>DTCP Tamil Nadu online approval portal</strong> - created his own login and shared the portal link with the contractor</li>
+                <li>Preparing detailed technical presentations (PowerPoint) on construction corrections</li>
+                <li>Understanding and referencing legal concepts such as penalty clauses and liabilities</li>
+            </ul>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client is a technically sophisticated professional working in a senior capacity at a government defence organization. He cannot be characterized as a person who could be easily coerced or who lacked the capacity to understand the document he was signing.
+            </div>
+        </div>
+
+        <!-- 5.10 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">10</div>
+                <div class="card-title">No Evidence of Pressure, Threat, or Undue Influence from Contractor</div>
+            </div>
+            <p>Throughout the entire negotiation period (March - May 2025), the contractor's communications were consistently non-coercive:</p>
+
+            <div class="chat-evidence">
+                <div class="meta">18 March 2025, 12:47 PM</div>
+                <div class="sender">Krithika (Contractor):</div>
+                <div class="msg">"pls have a look and let me know if you need to add or remove anything"</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:47 AM</div>
+                <div class="sender">Krithika (Contractor):</div>
+                <div class="msg">"sorry was travelling, will connect today and close"</div>
+            </div>
+
+            <p style="margin-top: 14px;">And the <strong>client himself acknowledged</strong> there was no pressure:</p>
+
+            <div class="chat-evidence">
+                <div class="meta">27 March 2025, 10:48 AM</div>
+                <div class="sender">Perinbanathan Vasanthan (Client):</div>
+                <div class="msg">"Okay, no problem. If you need a bit more time please feel free to ask for. Take care"</div>
+            </div>
+
+            <div class="inference">
+                <strong>Inference:</strong> The client's own message confirms the contractor was not pressuring him. In fact, the client was offering the contractor more time to respond. This is the opposite of a coercive environment.
+            </div>
+        </div>
+
+        <!-- 5.11 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-number">11</div>
+                <div class="card-title">Ratification by Conduct Over 8+ Months</div>
+            </div>
+            <p>Even after signing, the client continued to actively participate in the project for over 8 months:</p>
+            <ul style="margin: 10px 0 10px 20px; line-height: 2;">
+                <li>Made payments totalling <strong>Rs. 34,50,000/-</strong> across multiple stages</li>
+                <li>Attended site visits, ground-breaking pooja, and design discussions</li>
+                <li>Provided detailed technical feedback on construction quality</li>
+                <li>Selected premium materials (APCO blocks) at additional cost</li>
+                <li>Installed borewell pump at his own expense</li>
+                <li>Arranged for electrical connection from TNEB</li>
+                <li>Added his father to the group for active involvement</li>
+            </ul>
+
+            <div class="inference">
+                <strong>Inference:</strong> This sustained, voluntary, and active participation over 8+ months constitutes <strong>ratification by conduct</strong>. A person claiming coercion would seek to repudiate the contract at the earliest opportunity, not invest Rs. 34.5 lakhs and participate actively for months.
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. NEGOTIATION TIMELINE -->
+    <div class="section" id="timeline">
+        <div class="section-number">Section 6</div>
+        <h2>Contract Negotiation Timeline (~2 Months)</h2>
+        <p style="margin-bottom: 16px;">The following timeline demonstrates the extended, participatory nature of the contract process:</p>
+
+        <div style="margin-bottom: 12px; font-size: 13px;">
+            <span class="badge badge-client">Red = Client Initiated</span>
+            <span class="badge badge-contractor">Green = Contractor Initiated</span>
+            <span class="badge badge-both">Orange = Both Parties</span>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item contractor-initiated">
+                <div class="timeline-date">15 March 2025</div>
+                <div class="timeline-event">WhatsApp group created, initial discussions</div>
+                <div class="timeline-who">Initiated by: Contractor (Krithika)</div>
+            </div>
+            <div class="timeline-item contractor-initiated">
+                <div class="timeline-date">17 March 2025</div>
+                <div class="timeline-event">Revised estimate shared</div>
+                <div class="timeline-who">Initiated by: Contractor (Krithika)</div>
+            </div>
+            <div class="timeline-item client-initiated">
+                <div class="timeline-date">17 March 2025</div>
+                <div class="timeline-event">Client requests agreement draft (twice)</div>
+                <div class="timeline-who">Initiated by: Client</div>
+            </div>
+            <div class="timeline-item contractor-initiated">
+                <div class="timeline-date">18 March 2025</div>
+                <div class="timeline-event">Draft agreement shared for review</div>
+                <div class="timeline-who">Initiated by: Contractor (Krithika)</div>
+            </div>
+            <div class="timeline-item client-initiated">
+                <div class="timeline-date">25 March 2025</div>
+                <div class="timeline-event">Client returns annotated draft with counter-proposal, adjusted amount to Rs. 47,52,000</div>
+                <div class="timeline-who">Initiated by: Client (7 days after receiving draft)</div>
+            </div>
+            <div class="timeline-item client-initiated">
+                <div class="timeline-date">27 March 2025</div>
+                <div class="timeline-event">Client pushes for finalization - "latest by tomorrow"</div>
+                <div class="timeline-who">Initiated by: Client</div>
+            </div>
+            <div class="timeline-item both">
+                <div class="timeline-date">27 March 2025</div>
+                <div class="timeline-event">Discussion call at 7 PM</div>
+                <div class="timeline-who">Mutually agreed</div>
+            </div>
+            <div class="timeline-item both">
+                <div class="timeline-date">2 April 2025</div>
+                <div class="timeline-event">In-person meeting at client's residence for design discussion</div>
+                <div class="timeline-who">Both parties - client brought parents</div>
+            </div>
+            <div class="timeline-item both">
+                <div class="timeline-date">22 May 2025</div>
+                <div class="timeline-event">Final contract exchanged (3 draft versions)</div>
+                <div class="timeline-who">Client uploaded the final contract PDF</div>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top: 20px;">
+            <strong>Key Observation:</strong> The negotiation spanned approximately <strong>2 months</strong> (17 March to 22 May 2025) with multiple rounds of review, in-person meetings, and family consultation. This is wholly inconsistent with any claim of being pressured or forced into a hasty agreement.
+        </div>
+    </div>
+
+    <!-- 7. LEGAL PRINCIPLES -->
+    <div class="section" id="legal">
+        <div class="section-number">Section 7</div>
+        <h2>Applicable Legal Principles</h2>
+
+        <div class="legal-principle">
+            <h4>1. Free Consent - Indian Contract Act, Section 14</h4>
+            <p>Consent is said to be free when it is not caused by coercion (Section 15), undue influence (Section 16), fraud (Section 17), misrepresentation (Section 18), or mistake (Section 20-22). The documentary evidence demonstrates the client's consent was entirely free, voluntary, and informed.</p>
+        </div>
+
+        <div class="legal-principle">
+            <h4>2. Doctrine of Approbation and Reprobation</h4>
+            <p>A party cannot take advantage of a contract (invoking penalty clauses, material specifications, payment milestones, etc.) and simultaneously claim the contract was executed under coercion. The client's repeated reliance on the contract's terms to enforce his rights <strong>estops him from challenging the contract's validity</strong>.</p>
+        </div>
+
+        <div class="legal-principle">
+            <h4>3. Ratification by Conduct</h4>
+            <p>Even if there were any initial reservations (which there were not), the client's conduct over 8+ months - making payments totalling Rs. 34.5 lakhs, participating actively in construction decisions, selecting premium materials, and enforcing contract terms - constitutes <strong>ratification of the agreement</strong> and waiver of any right to challenge its validity.</p>
+        </div>
+
+        <div class="legal-principle">
+            <h4>4. Burden of Proof - Indian Contract Act, Section 16(3)</h4>
+            <p>The burden of proving coercion or undue influence lies on the party alleging it. The documentary evidence overwhelmingly contradicts any such claim and the client has produced no evidence to support his allegation.</p>
+        </div>
+    </div>
+
+    <!-- 8. SUMMARY -->
+    <div class="section" id="summary">
+        <div class="section-number">Section 8</div>
+        <h2>Summary of Evidence</h2>
+
+        <div class="card" style="border-left: 4px solid var(--navy); margin-bottom: 28px;">
+            <h3 style="margin-top: 0; color: var(--navy);">Detailed Summary</h3>
+            <p style="line-height: 1.9; text-align: justify;">
+                The allegation of coercion raised by Mr. Perinbanathan Vasanthan is entirely without merit and is comprehensively contradicted by the documentary evidence preserved in the WhatsApp group chat "Mr Peri_Villa Hosur", spanning 796 messages from 15 March 2025 to 26 March 2026. The evidence unequivocally establishes that it was the <strong>client himself who initiated the contract process</strong> by requesting the draft agreement on 17 March 2025 - not once, but twice on the same evening. The contractor, Ms. Krithika, shared the draft the following day with expressly invitational language: <em>"pls have a look and let me know if you need to add or remove anything."</em> The client then took <strong>seven full days</strong> to independently review the document, during which time he consulted with his parents, prepared a detailed clause-by-clause annotated PDF, proposed his own counter-terms, and <strong>adjusted the total contract value himself to Rs. 47,52,000</strong> based on his own calculation of the built-up area. On 27 March 2025, it was the client - not the contractor - who imposed deadlines, stating he wished to <em>"finalise the deal and move forward latest by tomorrow"</em> and voluntarily offered to transfer the advance payment by asking for the contractor's account number. The contractor, far from exerting pressure, was in fact travelling and had to request time to respond, to which the client graciously replied: <em>"If you need a bit more time please feel free to ask for. Take care."</em>
+            </p>
+            <p style="line-height: 1.9; text-align: justify; margin-top: 14px;">
+                The negotiation process spanned approximately <strong>two months</strong> (17 March to 22 May 2025), involving multiple rounds of draft exchange, in-person meetings at the client's residence (where his parents were present), and telephonic discussions. The final executed contract was uploaded to the WhatsApp group <strong>by the client himself</strong> on 22 May 2025, titled "Final Contract AVS 423.pdf" - an act that demonstrates clear ownership, acceptance, and endorsement of the agreement. Following execution, the client proceeded to make voluntary payments totalling <strong>Rs. 34,50,000/-</strong> across Stages 1, 2, and partial Stage 3, attended the ground-breaking pooja ceremony on 23 April 2025, made numerous site visits, installed a borewell submersible pump at his own expense, arranged for the TNEB electrical connection, selected premium APCO blocks at additional cost, and added his father to the WhatsApp group for active family participation in the project.
+            </p>
+            <p style="line-height: 1.9; text-align: justify; margin-top: 14px;">
+                Most critically, the client <strong>invoked the contract's provisions for his own benefit on at least five separate occasions</strong> between September and November 2025 - citing the waterproofing clause, the penalty clause for late delivery, the material specification for A-grade wood, and the payment milestone structure. His father, Mr. Vasanthan Munusamy, independently sought a signed copy of the agreement on 22 November 2025, requesting <em>"the original agreement duly signed with sketches & 2d and programme schedule"</em> - treating it as a valid and binding document. Under the well-established legal doctrine of <strong>approbation and reprobation</strong>, a party who has accepted and derived benefits from a contract is estopped from subsequently challenging its validity. The client's conduct over 8+ months - making substantial payments, actively participating in construction decisions, enforcing contractual terms, and never once raising the issue of coercion until the present dispute over pending payments arose - constitutes unambiguous <strong>ratification by conduct</strong>. Furthermore, the client is an educated professional employed at <strong>HAL (Hindustan Aeronautics Limited)</strong>, a government defence organisation, possessing demonstrated technical knowledge of structural engineering, building approval processes, and legal terminology. He is not a person who could be characterised as vulnerable to coercion or lacking the capacity to comprehend the document he voluntarily negotiated, modified, signed, distributed, paid upon, and enforced for over eight months.
+            </p>
+            <p style="line-height: 1.9; text-align: justify; margin-top: 14px;">
+                In light of the above, the allegation of coercion appears to be an <strong>afterthought raised in the context of a payment dispute</strong>, rather than a genuine grievance. The entire body of evidence - comprising the client's own messages, his annotated documents, his voluntary payments, his enforcement of contract clauses, and his family's acceptance of the agreement - conclusively demonstrates that the contract was entered into with <strong>free consent, full awareness, and active participation</strong> of the client. The burden of proving coercion under Section 16(3) of the Indian Contract Act rests squarely on the party alleging it, and in this case, the available evidence not only fails to support the allegation but affirmatively disproves it.
+            </p>
+        </div>
+
+        <table class="summary-table">
+            <thead>
+                <tr><th>#</th><th>Defence Point</th><th>Key Evidence</th><th>Finding</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Client requested the draft agreement</td><td>Messages dated 17 Mar 2025</td><td class="verdict">Client-initiated</td></tr>
+                <tr><td>2</td><td>7 days of independent review with annotated response</td><td>18 Mar - 25 Mar 2025</td><td class="verdict">Sufficient time</td></tr>
+                <tr><td>3</td><td>Client pressured contractor to finalize</td><td>Messages dated 27 Mar 2025</td><td class="verdict">Client applied pressure</td></tr>
+                <tr><td>4</td><td>Client voluntarily offered advance payment</td><td>Message dated 27 Mar 2025</td><td class="verdict">Voluntary act</td></tr>
+                <tr><td>5</td><td>Client uploaded final contract himself</td><td>Message dated 22 May 2025</td><td class="verdict">Client distributed</td></tr>
+                <tr><td>6</td><td>Family consulted at every stage</td><td>Multiple messages Apr-Nov 2025</td><td class="verdict">No isolation</td></tr>
+                <tr><td>7</td><td>Client invoked contract terms 5+ times</td><td>Sep-Nov 2025</td><td class="verdict">Approbation</td></tr>
+                <tr><td>8</td><td>Client's father treated contract as valid</td><td>Message dated 22 Nov 2025</td><td class="verdict">Family acceptance</td></tr>
+                <tr><td>9</td><td>Client is an educated HAL professional</td><td>Multiple references in chat</td><td class="verdict">Informed consent</td></tr>
+                <tr><td>10</td><td>Zero coercive language from contractor</td><td>Entire chat record (796 messages)</td><td class="verdict">No coercion found</td></tr>
+                <tr><td>11</td><td>Ratification by conduct over 8+ months</td><td>Payments of Rs. 34.5L + active participation</td><td class="verdict">Ratified</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 9. DOCUMENTS -->
+    <div class="section" id="documents">
+        <div class="section-number">Section 9</div>
+        <h2>Documents to Be Provided to Counsel</h2>
+
+        <ol class="doc-list">
+            <li>
+                <div class="doc-name">WhatsApp Chat Export</div>
+                <div class="doc-file">WhatsApp Chat with Mr Peri_Villa Hosur.txt</div>
+            </li>
+            <li>
+                <div class="doc-name">Original Estimate</div>
+                <div class="doc-file">Mr Perinbanathan vasanthan._17032025.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Draft Agreement</div>
+                <div class="doc-file">Mr Perinbanathan Vasanthan Agreement Draft_18032025-1.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Client's Annotated Draft (with comments)</div>
+                <div class="doc-file">Mr Perinbanathan Vasanthan Agreement Draft_18032025- with comments.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Final Executed Contract</div>
+                <div class="doc-file">Final Contract AVS 423.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Stage 3 Payment Document</div>
+                <div class="doc-file">Stage 03_Mr Peribanadhan vasanthan-1.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Construction Ledger</div>
+                <div class="doc-file">CONSTRUCTION_Ledger.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">Payment Schedule</div>
+                <div class="doc-file">Sheets Document.pdf</div>
+            </li>
+            <li>
+                <div class="doc-name">All Structural / Design PDFs</div>
+                <div class="doc-file">Supporting evidence of active client participation throughout the project</div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- NOTE -->
+    <div class="section">
+        <div class="highlight-box" style="border-color: var(--navy); background: #eef1f7;">
+            <strong>Note on Admissibility:</strong> This brief has been compiled from the WhatsApp group chat export, which constitutes admissible electronic evidence under <strong>Section 63 of the Bharatiya Sakshya Adhiniyam, 2023</strong> (formerly Section 65B of the Indian Evidence Act, 1872). A certificate under the said section should be prepared for court proceedings, certifying the authenticity and integrity of the electronic record.
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <strong>PRIVILEGED & CONFIDENTIAL</strong><br>
+    This document is prepared for the exclusive use of legal counsel and is protected by attorney-client privilege.<br>
+    Any unauthorized use, disclosure, or distribution is strictly prohibited.<br><br>
+    Project Ref: KALYANI / AVS-423 | Prepared: 27 March 2026
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="pdf-progress" id="pdfProgress"></div>
+
+<!-- DOWNLOAD BUTTON -->
+<button class="download-btn" id="downloadBtn" onclick="generatePDF()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    <div class="spinner"></div>
+    <span class="btn-text"><span>Download PDF</span></span>
+</button>
+
+<!-- html2pdf.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+
+<script>
+function generatePDF() {
+    const btn = document.getElementById('downloadBtn');
+    const progress = document.getElementById('pdfProgress');
+
+    btn.classList.add('generating');
+    progress.classList.add('active');
+    progress.style.width = '15%';
+
+    setTimeout(() => {
+        progress.style.width = '30%';
+
+        // Clone the body into an offscreen wrapper for clean PDF capture
+        const clone = document.body.cloneNode(true);
+
+        // Remove elements that shouldn't appear in PDF
+        clone.querySelectorAll('.nav-bar, .download-btn, .pdf-progress, #downloadBtn, #pdfProgress').forEach(el => el.remove());
+
+        // Create offscreen container
+        const wrapper = document.createElement('div');
+        wrapper.id = 'pdf-render-wrapper';
+        wrapper.style.cssText = `
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            width: 794px;
+            background: white;
+            font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+        `;
+
+        // Move all children from cloned body into wrapper
+        while (clone.firstChild) {
+            wrapper.appendChild(clone.firstChild);
+        }
+
+        // Fix styles inside wrapper for PDF
+        wrapper.querySelectorAll('.container').forEach(el => {
+            el.style.maxWidth = '100%';
+            el.style.padding = '15px 25px';
+        });
+        wrapper.querySelectorAll('.header-inner').forEach(el => {
+            el.style.maxWidth = '100%';
+            el.style.padding = '0 25px';
+        });
+        wrapper.querySelectorAll('.header').forEach(el => {
+            el.style.padding = '25px 0';
+        });
+        wrapper.querySelectorAll('table').forEach(el => {
+            el.style.fontSize = '12px';
+            el.style.wordBreak = 'break-word';
+        });
+        wrapper.querySelectorAll('.card').forEach(el => {
+            el.style.pageBreakInside = 'avoid';
+        });
+        wrapper.querySelectorAll('.chat-evidence').forEach(el => {
+            el.style.pageBreakInside = 'avoid';
+        });
+        wrapper.querySelectorAll('.section').forEach(el => {
+            el.style.marginBottom = '25px';
+        });
+        wrapper.querySelectorAll('.timeline-item').forEach(el => {
+            el.style.pageBreakInside = 'avoid';
+        });
+
+        document.body.appendChild(wrapper);
+        progress.style.width = '50%';
+
+        const opt = {
+            margin: [8, 6, 8, 6],
+            filename: 'Legal_Brief_Defence_Against_Coercion_AVS423.pdf',
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                letterRendering: true,
+                scrollX: 0,
+                scrollY: 0,
+                width: 794,
+                windowWidth: 794
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            },
+            pagebreak: {
+                mode: ['css', 'legacy'],
+                avoid: ['.card', '.chat-evidence', '.inference', '.legal-principle', '.timeline-item']
+            }
+        };
+
+        progress.style.width = '65%';
+
+        html2pdf().set(opt).from(wrapper).save().then(() => {
+            progress.style.width = '100%';
+            // Clean up
+            document.body.removeChild(wrapper);
+
+            setTimeout(() => {
+                btn.classList.remove('generating');
+                progress.classList.remove('active');
+                progress.style.width = '0%';
+
+                btn.style.background = 'linear-gradient(135deg, #1a5c2a, #2e7d32)';
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span class="btn-text"><span>Downloaded!</span></span>
+                `;
+
+                setTimeout(() => {
+                    btn.style.background = '';
+                    btn.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        <div class="spinner"></div>
+                        <span class="btn-text"><span>Download PDF</span></span>
+                    `;
+                }, 2500);
+            }, 500);
+        }).catch((err) => {
+            console.error('PDF generation failed:', err);
+            document.body.removeChild(wrapper);
+            btn.classList.remove('generating');
+            progress.classList.remove('active');
+            progress.style.width = '0%';
+            alert('PDF generation failed. Please try using Ctrl+P > Save as PDF instead.');
+        });
+
+    }, 400);
+}
+</script>
+
+</body>
+</html>
