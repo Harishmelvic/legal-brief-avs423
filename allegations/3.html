@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation #3: Structural Drawings Not Shared on Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .top-nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .top-nav a:hover { color: var(--gold-light); }
+        .nav-left a { color: var(--gold-light); }
+
+        .nav-center {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-center a.disabled,
+        .nav-center span.disabled {
+            color: #555;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .nav-right a {
+            background: rgba(184, 134, 11, 0.15);
+            padding: 6px 16px;
+            border-radius: 4px;
+            color: var(--gold-light);
+            border: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-right a:hover { background: rgba(184, 134, 11, 0.25); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .allegation-number {
+            font-family: 'Merriweather', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.9rem;
+            color: var(--navy);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-high { background: #fde8e8; color: #8b1a1a; }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-low { background: #e8f5e9; color: #1a5c2a; }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.35rem;
+            color: var(--navy);
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.05rem;
+            color: var(--navy);
+            margin: 24px 0 10px;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .defence-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .defence-card.green-border { border-left: 4px solid var(--green); }
+        .defence-card.orange-border { border-left: 4px solid #e65100; }
+        .defence-card.red-border { border-left: 4px solid var(--red); }
+
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid var(--border);
+        }
+
+        .chat-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .counter-point {
+            border-left: 4px solid var(--green);
+            background: #f0f7ee;
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+        }
+
+        .counter-point strong { color: var(--green); }
+
+        .risk-box {
+            border-left: 4px solid var(--gold);
+            background: var(--quote-bg);
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .risk-box h3 { color: var(--gold); margin-top: 0; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 22px;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .timeline-ref {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        .page-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page-footer a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .page-footer a:hover { color: var(--gold); }
+
+        .page-footer span.disabled {
+            color: #aaa;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav { padding: 10px 14px; gap: 8px; }
+            .top-nav a, .nav-center span.disabled { font-size: 0.8rem; }
+            .container { padding: 20px 14px 40px; }
+            .page-header h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .defence-card { padding: 16px; }
+            .chat-evidence { padding: 12px 14px; }
+            .counter-point { padding: 12px 14px; }
+            .timeline { padding-left: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html">&larr; Back to All Allegations</a>
+        </div>
+        <div class="nav-center">
+            <a href="2.html">&larr; Prev</a>
+            <a href="4.html">Next &rarr;</a>
+        </div>
+        <div class="nav-right">
+            <a href="../legal_brief.html">Main Brief</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <header class="page-header">
+            <div class="allegation-number">Allegation #3</div>
+            <h1>Structural Drawings Not Shared on Time</h1>
+            <div class="badge-row">
+                <span class="badge severity-high">Severity: High</span>
+                <span class="badge severity-medium">Defence: Moderate</span>
+            </div>
+        </header>
+
+        <!-- Client's Exact Words -->
+        <section>
+            <h2>Client's Exact Words</h2>
+            <div class="chat-evidence">
+                <div class="chat-meta">17 Jul 2025, Line 210</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"Can you please send me the column and footing schedule? I have been requesting this for more than two months, but I have yet to receive it."</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="chat-meta">11 Nov 2025, Line 639</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"There's a drawing that should have been given along with the contract itself. I had to follow up several times for the same."</div>
+            </div>
+        </section>
+
+        <!-- Defence -->
+        <section>
+            <h2>Defence</h2>
+            <div class="defence-card orange-border">
+                <p>Drawings were shared &mdash; though some were delayed due to dependency on the structural engineer. The following timeline documents when each drawing was delivered:</p>
+            </div>
+
+            <h3>Drawing Delivery Timeline</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">29 Apr 2025</div>
+                    <div class="timeline-desc">Krithika shared footing and marking layout PDFs</div>
+                    <div class="timeline-ref">Lines 145&ndash;149</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">17 Jul 2025</div>
+                    <div class="timeline-desc">Harish shared column details, sump/septic drawings, and site video <strong>on the same day</strong> the client asked</div>
+                    <div class="timeline-ref">Lines 207&ndash;217</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">19 Aug 2025</div>
+                    <div class="timeline-desc">Gladwin shared plinth beam drawing</div>
+                    <div class="timeline-ref">Line 382</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">14 Nov 2025</div>
+                    <div class="timeline-desc">Krithika explained dependency: <em>"Will share as soon as we receive it from the structural engineer"</em></div>
+                    <div class="timeline-ref">Line 659 &mdash; Third-party dependency acknowledged</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Defence Arguments -->
+        <section>
+            <h2>Key Defence Arguments</h2>
+
+            <div class="counter-point">
+                <strong>Same-Day Response:</strong> When the client requested column and footing details on 17 Jul 2025, Harish responded the same day with the requested drawings, site video, and additional sump/septic drawings.
+            </div>
+
+            <div class="counter-point">
+                <strong>Third-Party Dependency:</strong> Some structural drawings were dependent on the structural engineer, a third party outside the contractor's direct control. Krithika transparently communicated this dependency to the client on 14 Nov 2025.
+            </div>
+
+            <div class="counter-point">
+                <strong>Drawings Were Shared:</strong> The allegation implies drawings were never shared. The chat record proves that footing layouts, column details, sump/septic drawings, and plinth beam drawings were all delivered through the WhatsApp group.
+            </div>
+        </section>
+
+        <!-- Risk Assessment -->
+        <section>
+            <div class="risk-box">
+                <h3>Risk Assessment</h3>
+                <p><strong>Moderate risk.</strong> The column/footing schedule was indeed delayed relative to the client's expectations. However, drawings were eventually shared, and some delays were due to the structural engineer (a third party). The contractor should document the structural engineer's timelines as supporting evidence to demonstrate that the delay was not attributable to negligence but to an external dependency chain.</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <a href="2.html">&larr; Prev: Poor Communication</a>
+            <a href="index.html">All Allegations</a>
+            <a href="4.html">Next: No Work Schedule &rarr;</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation 13 - False Delay Attribution to Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,.25);
+        }
+        .top-nav a {
+            color: #c9cdd4;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: color .2s;
+        }
+        .top-nav a:hover { color: var(--gold-light); }
+        .top-nav .nav-group { display: flex; gap: 18px; align-items: center; }
+        .top-nav .sep { color: #445; font-size: .85rem; }
+        .nav-disabled {
+            color: #556 !important;
+            pointer-events: none;
+            opacity: .45;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 36px 24px 60px;
+        }
+
+        .allegation-header { margin-bottom: 36px; }
+        .allegation-number {
+            font-family: 'Merriweather', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .allegation-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+        .badge-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        .severity-low { background: #e8f5e9; color: #1a5c2a; }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-high { background: #fde8e8; color: #8b1a1a; }
+        .defence-strong {
+            background: #e8f5e9;
+            color: #1a5c2a;
+            border: 1px solid #1a5c2a;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 28px 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.04);
+        }
+        .card-green { border-left: 4px solid var(--green); }
+        .card h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-radius: 5px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+        }
+        .chat-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 2px;
+        }
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        .counter-point {
+            border-left: 4px solid var(--green);
+            background: #f0f7ee;
+            border-radius: 4px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .counter-point strong { color: var(--green); }
+
+        .risk-box {
+            border-left: 4px solid var(--gold);
+            background: #fef9ed;
+            border-radius: 4px;
+            padding: 20px 24px;
+        }
+        .risk-box h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .page-wrapper { padding: 20px 14px 40px; }
+            .allegation-title { font-size: 1.35rem; }
+            .card { padding: 18px 16px; }
+            .top-nav { padding: 10px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="nav-group">
+        <a href="index.html">&larr; Back to All Allegations</a>
+        <span class="sep">|</span>
+        <a href="../legal_brief.html">Main Brief</a>
+    </div>
+    <div class="nav-group">
+        <a href="12.html">&larr; Prev</a>
+        <span class="sep">|</span>
+        <a href="14.html">Next &rarr;</a>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+
+    <header class="allegation-header">
+        <div class="allegation-number">Allegation 13</div>
+        <h1 class="allegation-title">False Delay Attribution to Payment</h1>
+        <div class="badge-row">
+            <span class="badge severity-high">Severity: High</span>
+            <span class="badge defence-strong">Defence: Strong</span>
+        </div>
+    </header>
+
+    <!-- Client's Exact Words -->
+    <section class="card card-green">
+        <h2>Client's Exact Words</h2>
+
+        <div class="chat-evidence">
+            <div class="chat-meta">31 December 2025 &middot; Line 782</div>
+            <div class="chat-sender">Client</div>
+            <div class="chat-message">"I have agreed to make this payment on 1st Dec itself, i.e. within 24 hours of you informing us about stopping the work. From 4th Dec you were saying workers were not available. I am not sure to understand why did you mention 30 days against delay due to payment. Please substantiate what you are stating here."</div>
+        </div>
+    </section>
+
+    <!-- Defence Points -->
+    <section class="card card-green">
+        <h2>Defence Points</h2>
+
+        <div class="counter-point">
+            <strong>Stage 3 payment was due 3 November, not 1 December:</strong> Krithika responded: <em>"Payment for stage 03 was not due on december 01 but november 03 hence the delay in payment is mentioned in the schedule."</em> (Line 791). The contractual due date was a full month before the client's claimed date.
+        </div>
+
+        <div class="chat-evidence">
+            <div class="chat-meta">31 December 2025 &middot; Line 791</div>
+            <div class="chat-sender">Krithika (Contractor)</div>
+            <div class="chat-message">"Payment for stage 03 was not due on december 01 but november 03 hence the delay in payment is mentioned in the schedule."</div>
+        </div>
+
+        <div class="counter-point">
+            <strong>Payment request on 3 November:</strong> Gladwin requested payment on 3 November (Line 566). The client said he would pay on Wednesday (Line 568). A partial payment dispute then began on 11 November, further delaying settlement.
+        </div>
+
+        <div class="counter-point">
+            <strong>Client's own MOM confirms outstanding balance:</strong> The Minutes of Meeting record: <em>"13L as payment for stage 3 has already been paid. As on date, as per the payment schedule owner has to pay 6 more lakhs."</em> (Line 726). Six lakhs was still pending as of 1 December, contradicting the client's claim of timely payment.
+        </div>
+
+        <div class="chat-evidence">
+            <div class="chat-meta">December 2025 &middot; Line 726</div>
+            <div class="chat-sender">Minutes of Meeting</div>
+            <div class="chat-message">"13L as payment for stage 3 has already been paid. As on date, as per the payment schedule owner has to pay 6 more lakhs."</div>
+        </div>
+
+        <div class="counter-point">
+            <strong>Contractor asked NOT to pay on 24 December:</strong> Krithika wrote: <em>"Request you to not initiate the payment. Lets clear the points first."</em> (Line 767). The contractor wanted clarification before accepting further payment, demonstrating good faith and process-driven conduct.
+        </div>
+
+        <div class="chat-evidence">
+            <div class="chat-meta">24 December 2025 &middot; Line 767</div>
+            <div class="chat-sender">Krithika (Contractor)</div>
+            <div class="chat-message">"Request you to not initiate the payment. Lets clear the points first."</div>
+        </div>
+    </section>
+
+    <!-- Risk Assessment -->
+    <section class="card card-green">
+        <h2>Risk Assessment</h2>
+        <div class="risk-box">
+            <h3>Low Risk</h3>
+            <p>The payment due date was contractually 3 November, not 1 December as the client claims. The 30-day delay calculation is accurate from the contractual due date. The contractor's position is well-documented through chat records, MOM entries, and the payment schedule itself. The client's attempt to reframe the timeline does not withstand scrutiny against the documentary evidence.</p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

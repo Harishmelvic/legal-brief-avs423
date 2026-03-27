@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation #4: No Work Schedule / Project Timeline Provided</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .top-nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .top-nav a:hover { color: var(--gold-light); }
+        .nav-left a { color: var(--gold-light); }
+
+        .nav-center {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-center a.disabled,
+        .nav-center span.disabled {
+            color: #555;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .nav-right a {
+            background: rgba(184, 134, 11, 0.15);
+            padding: 6px 16px;
+            border-radius: 4px;
+            color: var(--gold-light);
+            border: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-right a:hover { background: rgba(184, 134, 11, 0.25); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .allegation-number {
+            font-family: 'Merriweather', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.9rem;
+            color: var(--navy);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-high { background: #fde8e8; color: #8b1a1a; }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-low { background: #e8f5e9; color: #1a5c2a; }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.35rem;
+            color: var(--navy);
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.05rem;
+            color: var(--navy);
+            margin: 24px 0 10px;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .defence-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .defence-card.green-border { border-left: 4px solid var(--green); }
+        .defence-card.orange-border { border-left: 4px solid #e65100; }
+        .defence-card.red-border { border-left: 4px solid var(--red); }
+
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid var(--border);
+        }
+
+        .chat-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .counter-point {
+            border-left: 4px solid var(--green);
+            background: #f0f7ee;
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+        }
+
+        .counter-point strong { color: var(--green); }
+
+        .risk-box {
+            border-left: 4px solid var(--gold);
+            background: var(--quote-bg);
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .risk-box h3 { color: var(--gold); margin-top: 0; }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 22px;
+            width: 10px;
+            height: 10px;
+            background: #e65100;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .timeline-ref {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        .page-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page-footer a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .page-footer a:hover { color: var(--gold); }
+
+        .page-footer span.disabled {
+            color: #aaa;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav { padding: 10px 14px; gap: 8px; }
+            .top-nav a, .nav-center span.disabled { font-size: 0.8rem; }
+            .container { padding: 20px 14px 40px; }
+            .page-header h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .defence-card { padding: 16px; }
+            .chat-evidence { padding: 12px 14px; }
+            .counter-point { padding: 12px 14px; }
+            .timeline { padding-left: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html">&larr; Back to All Allegations</a>
+        </div>
+        <div class="nav-center">
+            <a href="3.html">&larr; Prev</a>
+            <a href="5.html">Next &rarr;</a>
+        </div>
+        <div class="nav-right">
+            <a href="../legal_brief.html">Main Brief</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <header class="page-header">
+            <div class="allegation-number">Allegation #4</div>
+            <h1>No Work Schedule / Project Timeline Provided</h1>
+            <div class="badge-row">
+                <span class="badge severity-high">Severity: High</span>
+                <span class="badge severity-medium">Defence: Moderate</span>
+            </div>
+        </header>
+
+        <!-- Client's Exact Words -->
+        <section>
+            <h2>Client's Exact Words</h2>
+            <div class="chat-evidence">
+                <div class="chat-meta">11 Nov 2025, Line 638</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"There should have been a work schedule added along with the contract. Where is that?"</div>
+            </div>
+            <div class="chat-evidence">
+                <div class="chat-meta">1 Oct 2025, Line 463</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"Please provide the schedule of activities you are planning to perform. This was to be given along with the contract itself. I am yet to receive it."</div>
+            </div>
+        </section>
+
+        <!-- Defence -->
+        <section>
+            <h2>Defence</h2>
+            <div class="defence-card orange-border">
+                <p>While a formal schedule was not attached to the original contract, the contractor provided timeline information and a detailed schedule at multiple points during the project:</p>
+            </div>
+
+            <h3>Timeline of Schedule-Related Communications</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">13 Oct 2025</div>
+                    <div class="timeline-desc">Krithika provided a detailed stage-by-stage plan outlining activities to be completed before wall construction</div>
+                    <div class="timeline-ref">Lines 489&ndash;497</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">17 Oct 2025</div>
+                    <div class="timeline-desc">Krithika provided a timeline estimate: <em>"The work should be done in 4 months."</em></div>
+                    <div class="timeline-ref">Line 507</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">31 Dec 2025</div>
+                    <div class="timeline-desc">Gladwin shared formal timeline documents: <strong>CONSTRUCTION_Ledger.pdf</strong> and <strong>Sheets Document.pdf</strong></div>
+                    <div class="timeline-ref">Lines 770&ndash;776</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Defence Arguments -->
+        <section>
+            <h2>Key Defence Arguments</h2>
+
+            <div class="counter-point">
+                <strong>Iterative Scheduling:</strong> Construction schedules are inherently iterative. They depend on regulatory approvals, weather conditions, material availability, and client decisions. Providing a rigid schedule at contract signing is neither standard practice nor practical for residential construction.
+            </div>
+
+            <div class="counter-point">
+                <strong>Detailed Stage Plan Provided:</strong> On 13 Oct 2025, Krithika provided a comprehensive stage-by-stage plan covering the sequence of activities before wall construction. This demonstrates planning and transparency.
+            </div>
+
+            <div class="counter-point">
+                <strong>Formal Document Delivered:</strong> A formal construction ledger and schedule document were shared on 31 Dec 2025, providing the client with a structured project timeline as requested.
+            </div>
+
+            <div class="counter-point">
+                <strong>Client's Own Delays:</strong> The client's decision-making timelines and family consultations also affected the overall schedule. Construction project timelines are a collaborative responsibility between the contractor and the client.
+            </div>
+        </section>
+
+        <!-- Risk Assessment -->
+        <section>
+            <div class="risk-box">
+                <h3>Risk Assessment</h3>
+                <p><strong>Moderate risk.</strong> While a formal schedule was shared later (Dec 2025), the client's point that it should have accompanied the contract has merit. The contractor should argue that construction schedules are iterative and depend on approvals, weather, and client decisions. The stage-by-stage plan shared on 13 Oct 2025 and the timeline estimate on 17 Oct 2025 demonstrate that the contractor was not operating without a plan, even if the formal document was delivered later than expected.</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <a href="3.html">&larr; Prev: Structural Drawings</a>
+            <a href="index.html">All Allegations</a>
+            <a href="5.html">Next: No Weekly Reports &rarr;</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>

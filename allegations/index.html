@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Allegations &amp; Defence - Legal Brief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --highlight-bg: #fef9ed;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --orange: #e65100;
+            --quote-bg: #f4f1ea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--navy), var(--dark-navy));
+            color: white;
+            padding: 40px 0 36px;
+            border-bottom: 4px solid var(--gold);
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .header .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        .header .subtitle {
+            font-size: 15px;
+            color: #b0bec5;
+            margin-bottom: 0;
+        }
+
+        /* BACK LINK */
+        .back-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 30px 0;
+        }
+        .back-bar a {
+            font-size: 14px;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .back-bar a:hover {
+            color: var(--gold);
+        }
+
+        /* SUMMARY BAR */
+        .summary-bar {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding: 0 30px;
+        }
+        .summary-inner {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 28px;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .summary-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .summary-stat .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-total { background: var(--navy); }
+        .dot-strong { background: var(--green); }
+        .dot-moderate { background: var(--orange); }
+        .dot-weak { background: var(--red); }
+        .summary-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+        }
+
+        /* GRID */
+        .grid-wrapper {
+            max-width: 1100px;
+            margin: 24px auto 60px;
+            padding: 0 30px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 22px;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: box-shadow 0.2s, transform 0.15s;
+            border-left: 5px solid transparent;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(26,39,68,0.10);
+            transform: translateY(-2px);
+        }
+        .card.border-strong { border-left-color: var(--green); }
+        .card.border-moderate { border-left-color: var(--orange); }
+        .card.border-weak { border-left-color: var(--red); }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-number {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            min-width: 32px;
+        }
+        .card-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+        }
+
+        .card-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .severity-high   { background: #fde8e8; color: #8b1a1a; }
+        .severity-medium  { background: #fff3e0; color: #e65100; }
+        .severity-low     { background: #e8f5e9; color: #1a5c2a; }
+        .defence-strong   { background: #e8f5e9; color: #1a5c2a; }
+        .defence-moderate { background: #fff3e0; color: #e65100; }
+        .defence-weak     { background: #fde8e8; color: #8b1a1a; }
+
+        .card-summary {
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .card-arrow {
+            margin-top: auto;
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: #90a4ae;
+            text-align: center;
+            padding: 24px 30px;
+            font-size: 13px;
+            border-top: 3px solid var(--gold);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .header { padding: 28px 0 24px; }
+            .header h1 { font-size: 20px; }
+            .header-inner,
+            .back-bar,
+            .summary-bar,
+            .grid-wrapper { padding-left: 16px; padding-right: 16px; }
+            .card-grid { grid-template-columns: 1fr; gap: 14px; }
+            .summary-inner { padding: 14px 16px; gap: 8px 16px; font-size: 13px; }
+            .summary-divider { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="label">Legal Defence Brief</div>
+            <h1>All Client Allegations &amp; Defence</h1>
+            <p class="subtitle">Mr Perinbanathan Vasanthan vs Harish / Speckle / Upscape Build</p>
+        </div>
+    </header>
+
+    <!-- BACK LINK -->
+    <div class="back-bar">
+        <a href="../legal_brief.html">&larr; Back to Main Brief</a>
+    </div>
+
+    <!-- SUMMARY BAR -->
+    <div class="summary-bar">
+        <div class="summary-inner">
+            <div class="summary-stat">
+                <span class="dot dot-total"></span>
+                15 Allegations
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-stat">
+                <span class="dot dot-strong"></span>
+                6 Strong Defence
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-stat">
+                <span class="dot dot-moderate"></span>
+                7 Moderate Defence
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-stat">
+                <span class="dot dot-weak"></span>
+                2 Weak Defence
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD GRID -->
+    <div class="grid-wrapper">
+        <div class="card-grid">
+
+            <!-- 1. Forced Contract -->
+            <a href="1.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">01</span>
+                    <span class="card-title">Forced Contract</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Client alleges coercion in signing the construction agreement</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 2. Poor Communication -->
+            <a href="2.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">02</span>
+                    <span class="card-title">Poor Communication</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-medium">Medium Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Claims no response for weeks, poor call attendance</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 3. Delayed Drawings -->
+            <a href="3.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">03</span>
+                    <span class="card-title">Delayed Drawings</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">Structural drawings not shared on time</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 4. No Work Schedule -->
+            <a href="4.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">04</span>
+                    <span class="card-title">No Work Schedule</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">No project timeline provided with contract</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 5. No Weekly Reports -->
+            <a href="5.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">05</span>
+                    <span class="card-title">No Weekly Reports</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-medium">Medium Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">Promised weekly progress reports never sent</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 6. Quality Issues -->
+            <a href="6.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">06</span>
+                    <span class="card-title">Quality Issues</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">Construction non-conformities: column offset, plinth beam deviation</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 7. Extra Charges -->
+            <a href="7.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">07</span>
+                    <span class="card-title">Extra Charges</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">Unauthorized additional charges appearing without approval</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 8. Unsigned Contract -->
+            <a href="8.html" class="card border-weak">
+                <div class="card-top">
+                    <span class="card-number">08</span>
+                    <span class="card-title">Unsigned Contract</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-medium">Medium Severity</span>
+                    <span class="badge defence-weak">Weak Defence</span>
+                </div>
+                <p class="card-summary">Signed contract copy not returned to client</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 9. No Payment Protection -->
+            <a href="9.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">09</span>
+                    <span class="card-title">No Payment Protection</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-medium">Medium Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">No protection if contractor abandons work</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 10. Work Stoppages -->
+            <a href="10.html" class="card border-moderate">
+                <div class="card-top">
+                    <span class="card-number">10</span>
+                    <span class="card-title">Work Stoppages</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-moderate">Moderate Defence</span>
+                </div>
+                <p class="card-summary">Frequent work stoppages and labour issues</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 11. Neighbour Mud -->
+            <a href="11.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">11</span>
+                    <span class="card-title">Neighbour Mud</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-low">Low Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Mud spilled into neighbouring construction site</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 12. Pump Unsecured -->
+            <a href="12.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">12</span>
+                    <span class="card-title">Pump Unsecured</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-low">Low Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Borewell pump controller left unsecured in rain</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 13. False Delay Blame -->
+            <a href="13.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">13</span>
+                    <span class="card-title">False Delay Blame</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">False attribution of delay to payment issues</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 14. Height Dispute -->
+            <a href="14.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">14</span>
+                    <span class="card-title">Height Dispute</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-medium">Medium Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Claims 11ft height was always the original requirement</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+            <!-- 15. MCA/RoC Threat -->
+            <a href="15.html" class="card border-strong">
+                <div class="card-top">
+                    <span class="card-number">15</span>
+                    <span class="card-title">MCA/RoC Threat</span>
+                </div>
+                <div class="card-badges">
+                    <span class="badge severity-high">High Severity</span>
+                    <span class="badge defence-strong">Strong Defence</span>
+                </div>
+                <p class="card-summary">Legal threat via MCA &amp; Registrar of Companies</p>
+                <span class="card-arrow">View Full Defence &rarr;</span>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        Confidential Legal Document &mdash; Prepared for Defence Counsel &mdash; Not for Distribution
+    </footer>
+
+</body>
+</html>

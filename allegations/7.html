@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation #7: Unauthorized Additional Charges - Legal Brief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* NAV BAR */
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .top-nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 48px;
+            flex-wrap: wrap;
+            gap: 4px 0;
+        }
+        .top-nav a {
+            color: #b0bec5;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 12px 6px;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+        .top-nav a:hover {
+            color: var(--gold-light);
+        }
+        .top-nav .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .nav-divider {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--navy), var(--dark-navy));
+            color: white;
+            padding: 40px 0 36px;
+            border-bottom: 4px solid var(--gold);
+        }
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .header .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+        .header-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* BADGES */
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .severity-high   { background: #fde8e8; color: #8b1a1a; }
+        .severity-medium  { background: #fff3e0; color: #e65100; }
+        .severity-low     { background: #e8f5e9; color: #1a5c2a; }
+        .defence-strong   { background: #e8f5e9; color: #1a5c2a; }
+        .defence-moderate { background: #fff3e0; color: #e65100; }
+        .defence-weak     { background: #fde8e8; color: #8b1a1a; }
+
+        /* CONTENT */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 30px 60px;
+        }
+
+        /* MAIN CARD */
+        .allegation-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid #e65100;
+            border-radius: 8px;
+            padding: 32px 36px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 28px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+
+        /* CHAT EVIDENCE BOXES */
+        .chat-evidence {
+            background: #f4f1ea;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .chat-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+            font-size: 14.5px;
+        }
+
+        /* COUNTER-POINTS (Defence) */
+        .counter-point {
+            background: #f0f7ee;
+            border-left: 4px solid #1a5c2a;
+            border-radius: 0 6px 6px 0;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .counter-point strong {
+            color: #1a5c2a;
+        }
+        .counter-point p {
+            margin-bottom: 0;
+        }
+        .counter-point p + p {
+            margin-top: 10px;
+        }
+
+        /* RISK / INFERENCE BOX */
+        .risk-box {
+            background: #fef9ed;
+            border-left: 4px solid var(--gold);
+            border-radius: 0 6px 6px 0;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+        }
+        .risk-box p {
+            margin-bottom: 0;
+        }
+        .risk-box strong {
+            color: var(--gold);
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .bottom-nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            background: var(--card-bg);
+        }
+        .bottom-nav a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--navy);
+            color: #90a4ae;
+            text-align: center;
+            padding: 24px 30px;
+            font-size: 13px;
+            border-top: 3px solid var(--gold);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .header { padding: 28px 0 24px; }
+            .header h1 { font-size: 20px; }
+            .header-inner,
+            .content-wrapper { padding-left: 16px; padding-right: 16px; }
+            .top-nav-inner { padding: 0 16px; gap: 2px 0; }
+            .top-nav a { font-size: 12px; padding: 10px 4px; }
+            .nav-group { gap: 10px !important; }
+            .allegation-card { padding: 22px 18px; }
+            .chat-evidence, .counter-point, .risk-box { padding: 14px 16px; }
+            .bottom-nav { flex-direction: column; }
+            .bottom-nav a { width: 100%; text-align: center; }
+            h2 { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAV -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="index.html">&larr; Back to All Allegations</a>
+            <div class="nav-group">
+                <a href="6.html">&larr; Prev</a>
+                <div class="nav-divider"></div>
+                <a href="8.html">Next &rarr;</a>
+                <div class="nav-divider"></div>
+                <a href="../legal_brief.html">Main Brief</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="label">Allegation #7 of 15</div>
+            <h1>Unauthorized Additional Charges</h1>
+            <div class="header-badges">
+                <span class="badge severity-high">High Severity</span>
+                <span class="badge defence-moderate">Moderate Defence</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+
+        <!-- CLIENT'S ALLEGATIONS -->
+        <div class="allegation-card">
+            <div class="section-label">Client's Exact Words</div>
+
+            <h2>What the Client Said</h2>
+
+            <div class="chat-evidence">
+                <div class="chat-meta">11 November 2025 &mdash; Chat Line 641</div>
+                <div class="chat-sender">Client (Mr Perinbanathan)</div>
+                <div class="chat-message">"Where and how the additional charges are appearing all of a sudden without my prior approval? I don't remember discussing or agreeing to increase the size of the main sump."</div>
+            </div>
+
+            <div class="chat-evidence">
+                <div class="chat-meta">11 November 2025 &mdash; Chat Line 619</div>
+                <div class="chat-sender">Client (Mr Perinbanathan)</div>
+                <div class="chat-message">"Your team just randomly comes up with additional payment requests all of a sudden which is taking a toll on the trust."</div>
+            </div>
+
+            <!-- DEFENCE SECTION -->
+            <div class="section-label" style="margin-top: 32px;">Defence &amp; Counter-Evidence</div>
+
+            <h2>Contractor's Defence</h2>
+
+            <div class="counter-point">
+                <h3>1. APCO Blocks &mdash; Client's Own Choice</h3>
+                <p>The client himself chose the premium APCO blocks option. The additional cost of Rs. 64,350 was clearly communicated before placing the order.</p>
+                <div class="chat-evidence" style="margin-top: 12px; margin-bottom: 0;">
+                    <div class="chat-meta">Chat Line 591</div>
+                    <div class="chat-sender">Client (Mr Perinbanathan)</div>
+                    <div class="chat-message">"I would prefer to go only with Apco due to superior compressive strength."</div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 10px;"><strong>Reference:</strong> Cost communicated at Chat Line 596</p>
+            </div>
+
+            <div class="counter-point">
+                <h3>2. Contract Clause on Additional Work</h3>
+                <p>The contract clearly defines the scope. Any work outside the agreed scope constitutes additional work and is chargeable. Harish communicated this principle clearly:</p>
+                <div class="chat-evidence" style="margin-top: 12px;">
+                    <div class="chat-meta">Chat Line 635</div>
+                    <div class="chat-sender">Harish (Contractor)</div>
+                    <div class="chat-message">"Any thing apart from the contract is considered as additional work."</div>
+                </div>
+                <div class="chat-evidence" style="margin-bottom: 0;">
+                    <div class="chat-meta">Chat Line 687</div>
+                    <div class="chat-sender">Harish (Contractor)</div>
+                    <div class="chat-message">"The cost in the contract is calculated based on what is specified in the same. Any additional work will be carried out with additional cost."</div>
+                </div>
+            </div>
+
+            <div class="counter-point">
+                <h3>3. Septic Tank &mdash; Scope Change Explained</h3>
+                <p>The septic tank was a necessary scope change. Harish explained the technical reason and asked the client for a decision before proceeding.</p>
+                <div class="chat-evidence" style="margin-top: 12px; margin-bottom: 0;">
+                    <div class="chat-meta">Chat Line 663</div>
+                    <div class="chat-sender">Harish (Contractor)</div>
+                    <div class="chat-message">"It is converted to septic and soakpit for that capacity."</div>
+                </div>
+                <p style="font-size: 13px; color: var(--text-light); margin-top: 10px;"><strong>Reference:</strong> Client asked for decision at Chat Line 668</p>
+            </div>
+
+            <div class="counter-point">
+                <h3>4. Minutes of Meeting (MOM) Confirms Mutual Agreement</h3>
+                <p>The client's own Minutes of Meeting dated 1 December 2025 acknowledges the process for handling additional charges:</p>
+                <div class="chat-evidence" style="margin-top: 12px; margin-bottom: 0;">
+                    <div class="chat-meta">1 December 2025 &mdash; Chat Line 730</div>
+                    <div class="chat-sender">Client's MOM</div>
+                    <div class="chat-message">"Calculation and basis for additional works carried out by contractor will be shared/clarified by contractor. The mutually agreed charges to be cleared later by owner."</div>
+                </div>
+            </div>
+
+            <!-- RISK ASSESSMENT -->
+            <div class="section-label" style="margin-top: 32px;">Risk Assessment</div>
+
+            <div class="risk-box">
+                <h3 style="color: var(--gold);">Moderate Risk</h3>
+                <p>Some additional charges were client-driven (APCO blocks), while others arose from scope changes (septic tank conversion). The contractor should prepare a detailed breakdown of each additional charge with full justification, the date the change was communicated, and evidence of the client's approval or acknowledgement for each item.</p>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <div class="bottom-nav">
+            <a href="6.html">&larr; Previous: Quality Issues</a>
+            <a href="index.html">All Allegations</a>
+            <a href="8.html">Next: Signed Contract Copy Not Returned &rarr;</a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        Confidential Legal Document &mdash; Prepared for Defence Counsel &mdash; Not for Distribution
+    </footer>
+
+</body>
+</html>

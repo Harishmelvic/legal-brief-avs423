@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegation #2: Poor Communication / No Response for Weeks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --dark-navy: #0f1a2e;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --bg: #fdfcf9;
+            --text: #2c2c2c;
+            --text-light: #555;
+            --border: #d4cfc5;
+            --card-bg: #ffffff;
+            --red: #8b1a1a;
+            --green: #1a5c2a;
+            --quote-bg: #f4f1ea;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            background: var(--dark-navy);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .top-nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .top-nav a:hover { color: var(--gold-light); }
+        .nav-left a { color: var(--gold-light); }
+
+        .nav-center {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-center a.disabled,
+        .nav-center span.disabled {
+            color: #555;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .nav-right a {
+            background: rgba(184, 134, 11, 0.15);
+            padding: 6px 16px;
+            border-radius: 4px;
+            color: var(--gold-light);
+            border: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-right a:hover { background: rgba(184, 134, 11, 0.25); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .allegation-number {
+            font-family: 'Merriweather', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.9rem;
+            color: var(--navy);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-high { background: #fde8e8; color: #8b1a1a; }
+        .severity-medium { background: #fff3e0; color: #e65100; }
+        .severity-low { background: #e8f5e9; color: #1a5c2a; }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.35rem;
+            color: var(--navy);
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.05rem;
+            color: var(--navy);
+            margin: 24px 0 10px;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .defence-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .defence-card.green-border { border-left: 4px solid var(--green); }
+        .defence-card.orange-border { border-left: 4px solid #e65100; }
+        .defence-card.red-border { border-left: 4px solid var(--red); }
+
+        .chat-evidence {
+            background: var(--quote-bg);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid var(--border);
+        }
+
+        .chat-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .chat-sender {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .chat-message {
+            font-style: italic;
+            color: var(--text);
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .counter-point {
+            border-left: 4px solid var(--green);
+            background: #f0f7ee;
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+        }
+
+        .counter-point strong { color: var(--green); }
+
+        .risk-box {
+            border-left: 4px solid var(--gold);
+            background: var(--quote-bg);
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .risk-box h3 { color: var(--gold); margin-top: 0; }
+
+        /* Stat Grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+
+        .stat-number {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: var(--navy);
+            color: #fff;
+            padding: 10px 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:last-child td {
+            font-weight: 700;
+            background: #f4f1ea;
+        }
+
+        .data-table tr:nth-child(even) td { background: #fafaf7; }
+        .data-table tr:last-child td { background: #f4f1ea; }
+
+        .page-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page-footer a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .page-footer a:hover { color: var(--gold); }
+
+        .page-footer span.disabled {
+            color: #aaa;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .top-nav { padding: 10px 14px; gap: 8px; }
+            .top-nav a, .nav-center span.disabled { font-size: 0.8rem; }
+            .container { padding: 20px 14px 40px; }
+            .page-header h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.15rem; }
+            .defence-card { padding: 16px; }
+            .chat-evidence { padding: 12px 14px; }
+            .counter-point { padding: 12px 14px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .data-table { font-size: 0.82rem; }
+            .data-table th, .data-table td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html">&larr; Back to All Allegations</a>
+        </div>
+        <div class="nav-center">
+            <a href="1.html">&larr; Prev</a>
+            <a href="3.html">Next &rarr;</a>
+        </div>
+        <div class="nav-right">
+            <a href="../legal_brief.html">Main Brief</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <header class="page-header">
+            <div class="allegation-number">Allegation #2</div>
+            <h1>Poor Communication / No Response for Weeks</h1>
+            <div class="badge-row">
+                <span class="badge severity-medium">Severity: Medium</span>
+                <span class="badge severity-low">Defence: Strong</span>
+            </div>
+        </header>
+
+        <!-- Client's Exact Words -->
+        <section>
+            <h2>Client's Exact Words</h2>
+            <div class="chat-evidence">
+                <div class="chat-meta">11 Nov 2025, Line 643</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"If I ask a doubt or question there would be no answer for weeks. Very less calls from me were attended."</div>
+            </div>
+        </section>
+
+        <!-- Communication Statistics -->
+        <section>
+            <h2>Defence &mdash; Communication Statistics</h2>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number">244</div>
+                    <div class="stat-label">Messages from Our Team</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">83</div>
+                    <div class="stat-label">Attachments Shared</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Thank-You Messages from Client</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10/10</div>
+                    <div class="stat-label">Months with Active Chat</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Communication Breakdown -->
+        <section>
+            <h2>Team Communication Breakdown</h2>
+            <div class="defence-card green-border">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Team Member</th>
+                            <th>Messages</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Krithika</td>
+                            <td>89</td>
+                            <td>Project Coordinator</td>
+                        </tr>
+                        <tr>
+                            <td>Ar Gladwin ARUPJ</td>
+                            <td>80</td>
+                            <td>Architect</td>
+                        </tr>
+                        <tr>
+                            <td>Harish</td>
+                            <td>54</td>
+                            <td>Engineer</td>
+                        </tr>
+                        <tr>
+                            <td>Ajay</td>
+                            <td>13</td>
+                            <td>Site Supervisor</td>
+                        </tr>
+                        <tr>
+                            <td>Speckle Business</td>
+                            <td>3</td>
+                            <td>Company Account</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Team</strong></td>
+                            <td><strong>244</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client</strong></td>
+                            <td><strong>303</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Client Thanked Us -->
+        <section>
+            <h2>Client Thanked Us 25+ Times &mdash; Selected Proof</h2>
+            <div class="defence-card green-border">
+                <div class="chat-evidence">
+                    <div class="chat-meta">10 Jul 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thank you for the update Gladwin"</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">17 Jul 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thank you for the video and drawings."</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">21 Jul 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Good morning Krithika, thank you for your reply."</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">29 Aug 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thank you so much Ajay for the updates."</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">13 Oct 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thank you Krithika for the detailed updates. Much appreciated."</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">8 Nov 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thanks a lot for trying. Keep me posted."</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">14 Nov 2025</div>
+                    <div class="chat-sender">Client</div>
+                    <div class="chat-message">"Thanks for sharing the picture of the wood. Very helpful."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proactive Updates -->
+        <section>
+            <h2>Proactive Updates from Our Team</h2>
+            <div class="defence-card green-border">
+                <div class="chat-evidence">
+                    <div class="chat-meta">30 Apr 2025</div>
+                    <div class="chat-sender">Krithika</div>
+                    <div class="chat-message">"Hi excavation work has started" + video attached</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">23 Jul 2025</div>
+                    <div class="chat-sender">Gladwin</div>
+                    <div class="chat-message">"Concrete pouring for the footing going on today" + 6 photos + 3 videos</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">18 Aug 2025</div>
+                    <div class="chat-sender">Harish</div>
+                    <div class="chat-message">"Consolidation work today" + video attached</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">26 Aug 2025</div>
+                    <div class="chat-sender">Ajay</div>
+                    <div class="chat-message">"The roller work is going on now" + video attached</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">29 Aug 2025</div>
+                    <div class="chat-sender">Ajay</div>
+                    <div class="chat-message">"The compaction work is done and the masonry work has started"</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">13 Oct 2025</div>
+                    <div class="chat-sender">Krithika</div>
+                    <div class="chat-message">Detailed multi-point update on waterproofing, bar bending, termite treatment, and workers</div>
+                </div>
+                <div class="chat-evidence">
+                    <div class="chat-meta">3 Nov 2025</div>
+                    <div class="chat-sender">Gladwin</div>
+                    <div class="chat-message">20+ videos and photos covering consolidation, rammering, termite piping, and PCC</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Counter-Point -->
+        <section>
+            <h2>Client Thanked Harish During the Same Dispute</h2>
+            <div class="counter-point">
+                <strong>Critical Evidence:</strong> Even during the very conversation where the client alleged poor communication, he thanked a team member:
+            </div>
+            <div class="chat-evidence">
+                <div class="chat-meta">11 Nov 2025, Line 636</div>
+                <div class="chat-sender">Client</div>
+                <div class="chat-message">"Absolutely Harish, thanks for pitching in."</div>
+            </div>
+            <div class="counter-point">
+                <strong>Inference:</strong> The client is conflating "not getting the answer he wanted" with "no communication." The data conclusively shows active, multi-member, multimedia communication throughout the project.
+            </div>
+        </section>
+
+        <!-- Risk Assessment -->
+        <section>
+            <div class="risk-box">
+                <h3>Risk Assessment</h3>
+                <p><strong>Low risk.</strong> 244 messages, 83 attachments, and 25+ thank-you messages from the client completely contradict "no answer for weeks." The WhatsApp group records provide timestamped, irrefutable evidence of continuous, proactive communication from multiple team members across all 10 months of the project.</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <a href="1.html">&larr; Prev: Forced to Sign</a>
+            <a href="index.html">All Allegations</a>
+            <a href="3.html">Next: Structural Drawings &rarr;</a>
+        </footer>
+
+    </div>
+
+</body>
+</html>
